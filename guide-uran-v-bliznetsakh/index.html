@@ -221,6 +221,41 @@ h1{font-size:28px}
 .tabs .tab[data-cat="all"]{grid-column:1 / -1}
 .tab{font-size:11.5px;padding:9px 6px;white-space:normal;line-height:1.25;min-height:38px}
 }
+
+.asc{border:1px solid var(--card-border);border-radius:16px;padding:20px;margin:22px 0;background:var(--card-bg)}
+.asc h3{margin:0 0 4px;font-family:var(--font-display)}
+.asc .sub{color:var(--muted);font-size:15px;margin:0 0 16px}
+.ascf{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.ascf label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+.ascf input,.ascf select{font:inherit;font-size:16px;padding:10px 12px;border-radius:10px;
+  border:1px solid var(--card-border);background:var(--surface);color:var(--text)}
+.ascgo{margin-top:14px;font:inherit;font-weight:600;font-size:16px;padding:12px 22px;border:0;
+  border-radius:10px;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.ascout{margin-top:16px;padding:16px;border-radius:12px;background:var(--surface);border:1px solid var(--card-border)}
+.ascout .big{font-size:24px;font-weight:700;margin:0 0 6px;font-family:var(--font-display)}
+.ascout .why{color:var(--muted);font-size:14px;margin:8px 0 0}
+.ascwrap{overflow-x:auto;margin-top:20px}
+.asctab{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+.asctab th,.asctab td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--hair);vertical-align:top}
+.asctab th{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.asctab tr.hit td{background:var(--accent);color:var(--accent-ink)}
+.asctab tr.hit td b{color:var(--accent-ink)}
+/* phone: the three-column table turns into one card per ascendant, each cell labelled */
+@media(max-width:700px){
+.ascwrap{overflow-x:visible}
+.asctab{min-width:0;display:block}
+.asctab thead{display:none}
+.asctab tbody,.asctab tr,.asctab td{display:block;width:100%}
+.asctab tr{border:1px solid var(--card-border);border-radius:12px;padding:10px 12px;margin:0 0 12px}
+.asctab tr.hit{border-color:var(--accent)}
+.asctab td{border:0;padding:8px 0}
+.asctab td+td{border-top:1px solid var(--hair)}
+.asctab td:before{content:attr(data-l);display:block;font-size:11px;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--muted);margin-bottom:3px}
+.asctab td:first-child:before{display:none}
+.asctab td:first-child b{font-size:19px;font-family:var(--font-display)}
+.asctab tr.hit td:before{color:var(--accent-ink);opacity:.7}
+}
 .hero:not(.about-hero) .art{background:var(--ink) url('/media/hero.jpg') center right/cover no-repeat}.hero:not(.about-hero) .grid{display:none}.hero:not(.about-hero) .glow{display:none}@media(max-width:900px){.hero:not(.about-hero) .art{background-position:72% center}}.hero.about-hero{min-height:580px}.hero.about-hero .art{left:auto;right:0;width:50%;background:url('/media/about.jpg') center top/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 44%);mask-image:linear-gradient(90deg,transparent 0%,#000 44%)}.hero.about-hero .txt{max-width:50%;background:none}.hero.about-hero h1{font-size:32px;max-width:12ch}.hero.about-hero .desc{font-size:15px;max-width:30ch}@media(max-width:760px){.hero.about-hero{display:block;padding-top:210px}.hero.about-hero .art{left:0;right:0;width:100%;height:360px;background-position:center top;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}.hero.about-hero .txt{max-width:100%;padding-top:6px}.hero.about-hero h1{font-size:27px;max-width:none}.hero.about-hero .desc{max-width:none}}</style>
 <script>
 (function(){
