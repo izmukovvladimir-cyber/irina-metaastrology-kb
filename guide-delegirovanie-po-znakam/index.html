@@ -1,0 +1,476 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Как делегировать каждому знаку зодиака</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"><style>
+:root{
+--accent:#CCFF00;--accent-ink:#0A1224;--ink:#0A1224;--offwhite:#ffffff;
+--bg-light:#F5F2E9;--bg-dark:#0A1224;
+--bg:var(--bg-light);--text:#1c1c1f;--muted:#6b7280;--surface:#ffffff;
+--card-bg:rgba(0,0,0,.035);--card-border:rgba(0,0,0,.10);--hair:rgba(0,0,0,.08);
+--dot:rgba(0,0,0,.05);--shadow:0 10px 30px rgba(0,0,0,.10);
+--font-display:'Inter Tight',system-ui,sans-serif;
+--font-body:'Inter',system-ui,-apple-system,sans-serif;
+--font-mono:'JetBrains Mono',ui-monospace,monospace;
+--font-serif:'PT Serif',Georgia,serif;
+}
+:root[data-theme=dark]{
+--bg:var(--bg-dark);--text:#f4f4f5;--muted:#9ca3af;--surface:#1a1a1c;
+--card-bg:rgba(255,255,255,.05);--card-border:rgba(255,255,255,.12);--hair:rgba(255,255,255,.10);
+--dot:rgba(255,255,255,.05);--shadow:0 10px 30px rgba(0,0,0,.45);
+}
+@media(prefers-color-scheme:dark){
+:root:not([data-theme=light]){
+--bg:var(--bg-dark);--text:#f4f4f5;--muted:#9ca3af;--surface:#1a1a1c;
+--card-bg:rgba(255,255,255,.05);--card-border:rgba(255,255,255,.12);--hair:rgba(255,255,255,.10);
+--dot:rgba(255,255,255,.05);--shadow:0 10px 30px rgba(0,0,0,.45);
+}
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg)}
+body{color:var(--text);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--font-mono)}
+/* ============ header ============ */
+.hd{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--hair)}
+.hd-in{height:66px;max-width:1340px;margin:0 auto;padding:0 44px;display:flex;align-items:center;gap:24px}
+.logo{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.04em;text-transform:uppercase;color:var(--text);display:inline-flex;align-items:center;flex:none;white-space:nowrap}
+.logo .sq{width:8px;height:8px;background:var(--accent);border:1.5px solid var(--ink);display:inline-block;margin:0 5px 0 3px}
+:root[data-theme=dark] .logo .sq{border-color:rgba(255,255,255,.7)}
+.hd-nav{display:flex;align-items:center;gap:22px;font-size:14px;flex:none}
+.hd-nav a{color:var(--muted);position:relative;padding:4px 1px;transition:color .15s;white-space:nowrap}
+.hd-nav a:hover{color:var(--text)}
+.hd-nav a.cur{color:var(--text);font-weight:600}
+.hd-nav a.cur::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:1.5px;background:var(--text);opacity:.8}
+.sp{flex:1}
+.tools{display:flex;align-items:center;gap:10px;flex:none}
+.tgl{width:34px;height:34px;border:1px solid var(--hair);border-radius:9px;display:grid;place-items:center;color:var(--text);background:none;cursor:pointer;padding:0;transition:border-color .15s}
+.tgl:hover{border-color:var(--muted)}
+.tgl svg{display:block;width:15px;height:15px}
+.tgl .ic-sun{display:none}
+:root[data-theme=dark] .tgl .ic-sun{display:block}
+:root[data-theme=dark] .tgl .ic-moon{display:none}
+.hd-btn{font-family:var(--font-display);font-size:14px;font-weight:600;padding:10px 17px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:var(--accent);color:var(--accent-ink);border:1.5px solid var(--ink);transition:transform .12s;flex:none}
+.hd-btn:hover{transform:translateY(-1px)}
+.hd-btn .ar{transition:transform .15s}
+.hd-btn:hover .ar{transform:translateX(3px)}
+:root[data-theme=dark] .hd-btn{border-color:var(--accent)}
+/* ============ shell ============ */
+.wrap{max-width:1340px;margin:0 auto;padding:0 44px 60px}
+.eyebrow{font-family:var(--font-mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;color:var(--muted)}
+.eyebrow .dot{width:7px;height:7px;background:var(--accent);outline:1px solid var(--ink);display:inline-block;flex:none}
+:root[data-theme=dark] .eyebrow .dot{outline-color:rgba(255,255,255,.35)}
+/* ============ hero ============ */
+.hero{margin:26px 0 6px;border-radius:18px;overflow:hidden;background:var(--ink);color:#f5f5f0;position:relative;min-height:340px;display:flex}
+.hero .art{position:absolute;inset:0;background:var(--ink)}
+/* the dot-grid and the accent bloom are the fallback look while there is no cover image yet;
+   cover_css() turns them off as soon as site.hero_image is set (two of each only muddies it) */
+.hero .grid{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:11px 11px}
+.hero .glow{position:absolute;right:-90px;top:-90px;width:420px;height:420px;border-radius:50%;background:var(--accent);filter:blur(120px);opacity:.28}
+/* scrim keeps the copy on dark whatever the glow does behind it (on narrow screens the
+   glow otherwise floods the whole card and the title lands on bright lime) */
+.hero .txt{position:relative;z-index:2;padding:44px 44px 38px;display:flex;flex-direction:column;max-width:760px;
+background:linear-gradient(100deg,color-mix(in srgb,var(--ink) 88%,transparent) 0%,color-mix(in srgb,var(--ink) 55%,transparent) 62%,transparent 100%)}
+.hero .eyebrow{color:var(--accent)}
+/* hero is always the dark ink card, so its title must not follow --text (black on black in light theme) */
+.hero h1{font-family:var(--font-display);font-size:42px;font-weight:700;letter-spacing:-.025em;line-height:1.08;margin:18px 0 14px;max-width:17ch;color:#f5f5f0}
+.hero .desc{font-size:16px;line-height:1.55;color:rgba(245,245,240,.72);max-width:52ch;margin:0}
+.hero .read{margin-top:auto;padding-top:30px;display:inline-flex;align-items:center;gap:14px;color:#fbfbf8;cursor:pointer;align-self:flex-start}
+.hero .read .circ{width:46px;height:46px;border-radius:50%;background:var(--accent);display:grid;place-items:center;color:var(--accent-ink);flex:none;transition:transform .15s}
+.hero .read:hover .circ{transform:translateX(3px)}
+.hero .read .lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+/* ============ tabs ============ */
+/* grid, not flex-wrap: inline chips left a ragged right edge and one orphan on the
+   second row. auto-fit + minmax(240px) resolves to exactly 5 columns on a 1440 shell
+   (avail 1352px: 6 cols would need 240*6+8*5=1480), so 10 chips read as a deliberate
+   5+5 block. Narrow screens re-solve to 4/3/2 columns via the overrides below. */
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;margin:34px 0 0;padding-top:24px;border-top:1px solid var(--hair)}
+.tab{font-size:13px;font-weight:500;padding:9px 14px;border-radius:999px;border:1px solid var(--card-border);color:var(--muted);background:none;cursor:pointer;font-family:inherit;white-space:nowrap;transition:border-color .15s,color .15s;display:flex;align-items:center;justify-content:center;text-align:center;width:100%;min-width:0}
+.tab:hover{color:var(--text);border-color:var(--muted)}
+.tab.on{background:var(--accent);color:var(--accent-ink);border-color:var(--ink);font-weight:600}
+:root[data-theme=dark] .tab.on{border-color:var(--accent)}
+.count{font-family:var(--font-mono);font-size:12px;color:var(--muted);margin:18px 0 14px}
+/* ============ cards ============ */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{border:1px solid var(--card-border);border-radius:14px;padding:18px;background:var(--card-bg);display:flex;flex-direction:column;gap:9px;min-height:158px;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--ink);transform:translateY(-2px)}
+:root[data-theme=dark] .card:hover{border-color:var(--accent)}
+.card .tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
+.card .tag .d{width:7px;height:7px;background:var(--accent);outline:1px solid var(--ink);display:inline-block;flex:none}
+:root[data-theme=dark] .card .tag .d{outline-color:rgba(255,255,255,.35)}
+.card .ct{font-family:var(--font-display);font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.25;color:var(--text)}
+.card .cd{font-size:13.5px;color:var(--muted);line-height:1.5;flex:1;margin:0}
+.card .cm{font-family:var(--font-mono);font-size:10.5px;color:var(--muted)}
+.empty{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--muted);padding:30px 0}
+/* ============ article ============ */
+.page{max-width:760px;margin:0 auto;padding:34px 44px 60px}
+.pcol{min-width:0}
+/* ============ toc: long guides only (4+ sections), shell adds .has-toc ============ */
+/* the reading column keeps the exact measure of a short guide (672px = 760 minus the
+   44px gutters), the menu hangs to its right and the pair is centered together, so a
+   long guide reads at the same width as a short one. */
+.page.has-toc{max-width:1180px;display:grid;grid-template-columns:minmax(0,672px) 200px;gap:44px;justify-content:center;align-items:start}
+/* padding-top 0 so «На странице» sits on the breadcrumb line of the article column */
+.toc{position:sticky;top:66px;align-self:start;max-height:calc(100vh - 96px);overflow-y:auto;font-size:12.5px;padding:0 0 24px}
+.toc .h{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-left:13px}
+/* the marker gutter is always reserved (transparent border), so switching sections
+   recolors in place instead of nudging the text. NB: .toc scrolls on the y axis, which
+   makes the x axis a scroll box too, so a negative margin here would be clipped away. */
+.toc a{display:block;color:var(--muted);padding:5px 0 5px 11px;line-height:1.4;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc a:hover{color:var(--text)}
+.toc a.on{color:var(--text);font-weight:600;border-left-color:var(--accent)}
+.toc{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
+.toc::-webkit-scrollbar{width:5px}
+.toc::-webkit-scrollbar-track{background:transparent}
+.toc::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:10px}
+:root[data-theme=dark] .toc{scrollbar-color:rgba(255,255,255,.2) transparent}
+:root[data-theme=dark] .toc::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18)}
+/* anchor lands below the sticky header, not under it */
+.sec h2[id]{scroll-margin-top:86px}
+/* no room for a side column: fall back to the plain reading page */
+@media(max-width:1100px){
+.page.has-toc{display:block;max-width:760px}
+.toc{display:none}
+}
+.bc{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.bc a:hover{color:var(--text)}
+h1{font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1.12;margin:0 0 6px;color:var(--text)}
+.lead{font-family:var(--font-serif);font-size:20px;line-height:1.5;font-weight:700;color:var(--text);border-left:3px solid var(--accent);padding-left:18px;margin:20px 0 22px}
+.meta{font-family:var(--font-mono);font-size:11px;color:var(--muted);padding-bottom:20px;border-bottom:1px solid var(--hair);margin-bottom:26px}
+.how{border:1px solid var(--card-border);border-radius:12px;background:var(--surface);padding:16px 18px;margin:22px 0;font-size:14.5px;line-height:1.56;color:var(--text)}
+.p,.sec{border:1px solid var(--card-border);border-radius:14px;background:var(--card-bg);padding:20px;margin:18px 0}
+.p .num{display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--accent-ink);background:var(--accent);border:1px solid var(--ink);padding:3px 10px;margin-bottom:10px}
+:root[data-theme=dark] .p .num{border-color:var(--accent)}
+.p h2{font-family:var(--font-display);font-size:20px;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+.p .when{font-size:13.5px;color:var(--muted);margin:0 0 10px}
+.sec h2{font-family:var(--font-display);font-size:22px;margin:0 0 10px;font-weight:700;letter-spacing:-.015em}
+.sec h3{font-family:var(--font-display);font-size:17px;margin:18px 0 6px;font-weight:700}
+.sec p,.p p{font-size:15.5px;line-height:1.66;margin:10px 0}
+.sec ol,.sec ul{margin:8px 0;padding-left:22px;font-size:15.5px;line-height:1.66}
+.sec li{margin:0 0 7px}
+.sec li::marker{color:var(--muted)}
+.lblrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 6px}
+.lbl{font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+.box{font-family:var(--font-mono);font-size:12.5px;background:var(--surface);border:1px solid var(--hair);border-radius:10px;padding:14px 16px;white-space:pre-wrap;line-height:1.6;color:var(--text);overflow-x:auto}
+.copy{font-family:var(--font-mono);font-size:11px;color:var(--muted);background:none;border:1px solid var(--card-border);border-radius:8px;padding:6px 11px;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s,background .15s}
+.copy:hover{color:var(--text);border-color:var(--muted)}
+.copy.done{background:var(--accent);color:var(--accent-ink);border-color:var(--ink);font-weight:600}
+.ex{font-size:14px;color:var(--muted);margin-top:12px}
+.ex b{color:var(--text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.cardb{background:var(--surface);border:1px solid var(--card-border);border-radius:12px;padding:14px 16px}
+.cardb h3{font-family:var(--font-display);margin:0 0 6px;font-size:16px}
+.cardb ul,.cardb ol{padding-left:18px;margin:6px 0;font-size:14.5px}
+.cardb p{font-size:14.5px;margin:6px 0}
+.quote{font-family:var(--font-serif);font-style:italic;color:var(--text);opacity:.85;border-left:3px solid var(--accent);padding-left:14px;margin:14px 0;font-size:15.5px}
+.note{font-size:14.5px;line-height:1.56;color:var(--text);background:var(--surface);border:1px solid var(--card-border);border-left:3px solid var(--accent);border-radius:10px;padding:12px 16px;margin:14px 0}
+.linkbtn{display:inline-block;margin:12px 0 4px;font-weight:600;font-size:15px;color:var(--text);word-break:break-word;border-bottom:2px solid var(--accent)}
+.linkbtn:hover{opacity:.75}
+.mid{margin:26px 0;text-align:center}
+.mid a{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-size:14.5px;font-weight:600;padding:12px 22px;border-radius:999px;background:var(--ink);color:var(--offwhite);border:1px solid var(--ink)}
+:root[data-theme=dark] .mid a{background:var(--surface);border-color:var(--accent);color:var(--text)}
+/* ============ CTA ============ */
+.cta{margin:40px 0 6px;padding:30px 32px;border-radius:18px;background:var(--ink);color:#f5f5f0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:10px 10px}
+.cta .ttl{font-family:var(--font-display);font-size:25px;font-weight:700;letter-spacing:-.02em;margin:10px 0 6px}
+.cta .sub{font-size:14.5px;line-height:1.55;color:rgba(245,245,240,.68);margin:0 0 20px;max-width:60ch}
+.cta .eyebrow{color:var(--accent)}
+.cta-btn{font-family:var(--font-display);font-size:15px;font-weight:600;padding:13px 22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);display:inline-flex;align-items:center;gap:9px}
+.cta-btn:hover{transform:translateY(-1px)}
+/* ============ footer ============ */
+.ft{border-top:1px solid var(--hair);background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:9px 9px;padding:36px 0 26px}
+.ft-in{max-width:1340px;margin:0 auto;padding:0 44px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.ft-in .logo{font-size:17px}
+.ft-links{display:flex;gap:20px;font-size:13.5px;color:var(--text);opacity:.82}
+.ft-links a:hover{opacity:1}
+.ft-bot{max-width:1340px;margin:20px auto 0;padding:16px 44px 0;border-top:1px solid var(--hair);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* ============ responsive ============ */
+@media(max-width:900px){
+.hd-in,.wrap,.ft-in,.ft-bot{padding-left:20px;padding-right:20px}
+.page{padding:26px 20px 50px}
+/* narrow: the copy sits ON the artwork (no room to dodge it), so the scrim goes near-opaque
+   under the text and only clears near the bottom edge, where the art can breathe */
+.hero .txt{padding:30px 24px 26px;background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 94%,transparent) 0%,color-mix(in srgb,var(--ink) 88%,transparent) 68%,color-mix(in srgb,var(--ink) 60%,transparent) 100%)}
+.hero .glow{width:240px;height:240px;right:-80px;top:-80px;opacity:.2}
+.hero h1{font-size:29px}
+.hero{min-height:0}
+h1{font-size:28px}
+.grid2{grid-template-columns:1fr}
+.tabs{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+}
+@media(max-width:700px){
+.hd-in{height:60px;gap:12px}
+.hd-nav{display:none}
+.logo{font-size:16px}
+.hd-btn{font-size:12.5px;padding:9px 13px}
+.cards{grid-template-columns:1fr}
+.cta{padding:24px 20px}
+.cta .ttl{font-size:21px}
+.lead{font-size:18px}
+.ft-in{gap:14px}
+}
+/* phone: logo + toggle + CTA must all survive on a 390px bar, so tighten the type
+   and let the CTA label clamp instead of pushing the button off the screen */
+@media(max-width:460px){
+.hd-in{gap:8px;padding:0 14px}
+.logo{font-size:12.5px}
+.hd-btn{font-size:11px;padding:8px 10px;gap:5px;min-width:0}
+.hd-btn .lb{display:block;max-width:36vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tgl{width:32px;height:32px}
+.wrap,.ft-in,.ft-bot{padding-left:14px;padding-right:14px}
+.page{padding:22px 14px 44px}
+/* phone: "all" pill spans the full row alone, categories sit 3 per row under it
+   (Vladimir, 16.07). Long labels wrap to two lines instead of clipping. */
+.tabs{grid-template-columns:repeat(3,1fr);gap:7px}
+.tabs .tab[data-cat="all"]{grid-column:1 / -1}
+.tab{font-size:11.5px;padding:9px 6px;white-space:normal;line-height:1.25;min-height:38px}
+}
+
+.asc{border:1px solid var(--card-border);border-radius:16px;padding:20px;margin:22px 0;background:var(--card-bg)}
+.asc.sunsign{border-color:var(--accent)}
+.asc h3{margin:0 0 4px;font-family:var(--font-display)}
+.asc .sub{color:var(--muted);font-size:15px;margin:0 0 16px}
+.ascf{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.ascf label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+.ascf input,.ascf select{font:inherit;font-size:16px;padding:10px 12px;border-radius:10px;
+  border:1px solid var(--card-border);background:var(--surface);color:var(--text)}
+.ascgo{margin-top:14px;font:inherit;font-weight:600;font-size:16px;padding:12px 22px;border:0;
+  border-radius:10px;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.ascout{margin-top:16px;padding:16px;border-radius:12px;background:var(--surface);border:1px solid var(--card-border)}
+.ascout .big{font-size:24px;font-weight:700;margin:0 0 6px;font-family:var(--font-display)}
+.ascout .why{color:var(--muted);font-size:14px;margin:8px 0 0}
+.ascwrap{overflow-x:auto;margin-top:20px}
+.asctab{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+.asctab th,.asctab td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--hair);vertical-align:top}
+.asctab th{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.asctab tr.hit td{background:var(--accent);color:var(--accent-ink)}
+.asctab tr.hit td b{color:var(--accent-ink)}
+/* phone: the three-column table turns into one card per ascendant, each cell labelled */
+@media(max-width:700px){
+.ascwrap{overflow-x:visible}
+.asctab{min-width:0;display:block}
+.asctab thead{display:none}
+.asctab tbody,.asctab tr,.asctab td{display:block;width:100%}
+.asctab tr{border:1px solid var(--card-border);border-radius:12px;padding:10px 12px;margin:0 0 12px}
+.asctab tr.hit{border-color:var(--accent)}
+.asctab td{border:0;padding:8px 0}
+.asctab td+td{border-top:1px solid var(--hair)}
+.asctab td:before{content:attr(data-l);display:block;font-size:11px;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--muted);margin-bottom:3px}
+.asctab td:first-child:before{display:none}
+.asctab td:first-child b{font-size:19px;font-family:var(--font-display)}
+.asctab tr.hit td:before{color:var(--accent-ink);opacity:.7}
+}
+.hero:not(.about-hero) .art{background:var(--ink) url('/media/hero.jpg') center right/cover no-repeat}.hero:not(.about-hero) .grid{display:none}.hero:not(.about-hero) .glow{display:none}@media(max-width:900px){.hero:not(.about-hero) .art{background-position:72% center}}.hero.about-hero{min-height:580px}.hero.about-hero .art{left:auto;right:0;width:50%;background:url('/media/about.jpg') center top/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 44%);mask-image:linear-gradient(90deg,transparent 0%,#000 44%)}.hero.about-hero .txt{max-width:50%;background:none}.hero.about-hero h1{font-size:32px;max-width:12ch}.hero.about-hero .desc{font-size:15px;max-width:30ch}@media(max-width:760px){.hero.about-hero{display:block;padding-top:210px}.hero.about-hero .art{left:0;right:0;width:100%;height:360px;background-position:center top;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}.hero.about-hero .txt{max-width:100%;padding-top:6px}.hero.about-hero h1{font-size:27px;max-width:none}.hero.about-hero .desc{max-width:none}}</style>
+<script>
+(function(){
+  var d=document.documentElement;
+  function set(t){d.setAttribute('data-theme',t);}
+  var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+  var s=null;try{s=localStorage.getItem('vi-theme');}catch(e){}
+  set(q||s||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.tgl');if(!b)return;
+    var n=d.getAttribute('data-theme')==='dark'?'light':'dark';
+    set(n);try{localStorage.setItem('vi-theme',n);}catch(err){}
+  });
+})();
+</script>
+</head><body><header class="hd"><div class="hd-in"><a class="logo" href="/">Ирина<i class="sq"></i>Терещенко</a><nav class="hd-nav"><a href="/">Все материалы</a><a href="/about/">Обо мне</a></nav><span class="sp"></span><div class="tools"><button class="tgl" type="button" aria-label="Сменить тему"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg></button><a class="hd-btn" href="https://t.me/tereshchenkoirina"><span class="lb">Личная консультация</span><span class="ar">&#8594;</span></a></div></div></header>
+<main class="page has-toc">
+<article class="pcol">
+<div class="bc"><a href="/#cat-biznes-i-prednaznacenie">Бизнес и предназначение</a></div>
+<h1>Как делегировать каждому знаку зодиака</h1>
+<p class="lead">Делегирование ломается не на людях, а на способе. Одному нужно назвать срок и уйти, другому проговорить смысл, третьему дать письменный регламент, и это не про дисциплину, это про то, как человек устроен. За четырнадцать лет работы с картами предпринимателей я вижу одну и ту же картину: руководитель ставит задачи так, как удобно ЕМУ, и получает саботаж там, где человек просто не считывает формат. Ниже матрица на двенадцать знаков и разбор, почему задачи возвращаются к тебе обратно.</p>
+<p class="meta">Как делегировать каждому знаку зодиака: матрица на 12 знаков с формулировкой задачи, способом контроля и демотиватором, диагностика своего стиля делегирования по своему знаку, разбор четырёх причин, по которым задача возвращается обратно, и промпт для постановки задачи конкретному человеку.</p>
+<div class="how">Начни со своего знака в разделе про стиль руководителя, там видно твою слепую зону. Дальше найди в матрице знаки своих сотрудников и переставь формулировку задачи под каждого. Проверять эффект можно уже на следующей неделе: считаешь, сколько задач вернулось к тебе на доделку.</div>
+<div class="sec"><h2 id="sec-0">Почему задача возвращается обратно</h2><p>Четыре причины, и только одна из них про самого человека.</p><h3>Причина 1. Формат постановки не тот</h3><p>Ты сказала устно и быстро, а человеку нужен текст и время подумать. Или наоборот, прислала длинное ТЗ тому, кому хватило бы одной фразы и дедлайна. Задача при этом понятная, а не сделана.</p><h3>Причина 2. Контроль не по его типу</h3><p>Одного проверка каждые два часа держит в тонусе, другого выбивает и он начинает тянуть. Слишком частый контроль читается как недоверие, слишком редкий как безразличие. Точка настраивается под человека, не под твою тревожность.</p><h3>Причина 3. Задача не его природы</h3><p>Человеку с сильной идейной частью отдали монотонную сверку таблиц. Он сделает её три раза с ошибками, и дело не в лени. Такие задачи всегда возвращаются, сколько ни объясняй.</p><h3>Причина 4. Ты не отпустила</h3><p>Самая частая у предпринимателей. Задача отдана формально, а решения по ней всё равно принимаешь ты. Человек это чувствует за неделю и перестаёт брать ответственность, потому что смысла нет.</p><div class="note">Первые три причины лечатся матрицей ниже. Четвёртая лечится в разделе про твой стиль: там видно, за что именно держится твой знак.</div></div>
+<div class="sec"><h2 id="sec-1">Шаг 1. Матрица: как делегировать каждому знаку</h2><p>Смотри по солнечному знаку сотрудника, его обычно знают. По асценденту точнее, если у тебя есть время рождения человека: тогда читай строку асцендента, она про рабочее поведение.</p><div class="asc sunsign"><h3>Быстрый способ: по дате рождения</h3><p class="sub">Только дата, без времени и города. Даёт солнечный знак.</p><div class="ascf"><label>Дата рождения<input type="date" class="ssd" min="1900-01-01" max="2026-12-31"></label></div><button class="ascgo ssgo" type="button">Показать мой знак</button><div class="ascout ssout" hidden></div></div><div class="asc"><h3>Точнее: расчёт по асценденту</h3><p class="sub">Нужно точное время и город рождения. Считает сам браузер прямо на этой странице, данные никуда не отправляются и нигде не сохраняются. Часовой пояс подставляется с учётом декретного и летнего времени года рождения, при желании его можно поправить руками.</p><div class="ascf"><label>Дата рождения<input type="date" class="ascd" min="1900-01-01" max="2026-12-31"></label><label>Время рождения<input type="time" class="asct"></label><label>Город рождения<select class="ascc"></select></label><label>Часовой пояс, UTC+<input type="number" class="ascz" step="1" min="-1" max="13"></label></div><button class="ascgo" type="button">Показать мой асцендент</button><div class="ascout" hidden></div><div class="ascwrap"><table class="asctab"><thead><tr><th>Знак</th><th>Как ставить задачу</th><th>Как контролировать</th><th>Что убивает его мотивацию</th></tr></thead><tbody><tr data-sign="Овен"><td data-l="Знак"><b>Овен</b></td><td data-l="Как ставить задачу">Коротко, с вызовом и жёстким сроком. «Нужно к пятнице, справишься быстрее всех.»</td><td data-l="Как контролировать">Точки в начале и в конце. В середине не трогай, он на скорости.</td><td data-l="Что убивает его мотивацию">Долгие обсуждения, согласования по кругу и отсутствие видимого результата.</td></tr><tr data-sign="Телец"><td data-l="Знак"><b>Телец</b></td><td data-l="Как ставить задачу">Спокойно, с деталями и запасом времени. Покажи готовый образец результата.</td><td data-l="Как контролировать">Редко и по плану. Он доводит до конца сам, но в своём темпе.</td><td data-l="Что убивает его мотивацию">Срочные вводные и смена условий на ходу. От этого он встаёт намертво.</td></tr><tr data-sign="Близнецы"><td data-l="Знак"><b>Близнецы</b></td><td data-l="Как ставить задачу">Письменно и по пунктам, иначе половина потеряется. Дай контекст, зачем это.</td><td data-l="Как контролировать">Часто и короткими касаниями, лучше в переписке. Ему нужен диалог.</td><td data-l="Что убивает его мотивацию">Монотонность и задачи без разнообразия. Через неделю он уйдёт в другое.</td></tr><tr data-sign="Рак"><td data-l="Знак"><b>Рак</b></td><td data-l="Как ставить задачу">Мягко и лично, с объяснением, кому это поможет. Он работает на отношения.</td><td data-l="Как контролировать">Через регулярный человеческий контакт, а не через отчётность.</td><td data-l="Что убивает его мотивацию">Публичная критика и резкий тон. После этого он закрывается на месяц.</td></tr><tr data-sign="Лев"><td data-l="Знак"><b>Лев</b></td><td data-l="Как ставить задачу">Через значимость: это его зона, его имя на результате.</td><td data-l="Как контролировать">Проси показать результат и отмечай его вслух. Признание важнее премии.</td><td data-l="Что убивает его мотивацию">Работа в тени и присвоение результата кем-то другим.</td></tr><tr data-sign="Дева"><td data-l="Знак"><b>Дева</b></td><td data-l="Как ставить задачу">Точно, с критериями готово и стандартом качества. Он любит регламент.</td><td data-l="Как контролировать">По чек-листу и промежуточным точкам. Он сам их и предложит.</td><td data-l="Что убивает его мотивацию">Размытые формулировки и «сделай как-нибудь». От этого он уходит в бесконечную доработку.</td></tr><tr data-sign="Весы"><td data-l="Знак"><b>Весы</b></td><td data-l="Как ставить задачу">В диалоге, с возможностью обсудить и предложить своё.</td><td data-l="Как контролировать">Через совместный разбор, а не через проверку сверху.</td><td data-l="Что убивает его мотивацию">Конфликт в команде и необходимость выбирать сторону. Это парализует его сильнее нагрузки.</td></tr><tr data-sign="Скорпион"><td data-l="Знак"><b>Скорпион</b></td><td data-l="Как ставить задачу">Дай задачу целиком и объясни ставку. Он берёт то, где есть глубина и риск.</td><td data-l="Как контролировать">Минимально. Дай зону ответственности и не лезь в процесс.</td><td data-l="Что убивает его мотивацию">Мелочный контроль и недосказанность. Скрытую информацию он вычислит и потеряет доверие.</td></tr><tr data-sign="Стрелец"><td data-l="Знак"><b>Стрелец</b></td><td data-l="Как ставить задачу">Через смысл и масштаб: куда это ведёт и зачем. Детали он достроит сам.</td><td data-l="Как контролировать">По результату, свобода в процессе обязательна.</td><td data-l="Что убивает его мотивацию">Рутина без перспективы и потолок, выше которого расти некуда.</td></tr><tr data-sign="Козерог"><td data-l="Знак"><b>Козерог</b></td><td data-l="Как ставить задачу">Официально, с зоной ответственности и понятным вертикальным порядком.</td><td data-l="Как контролировать">По плану и срокам. Он держит слово, если оно записано.</td><td data-l="Что убивает его мотивацию">Хаос, отмена договорённостей и отсутствие внятной структуры.</td></tr><tr data-sign="Водолей"><td data-l="Знак"><b>Водолей</b></td><td data-l="Как ставить задачу">Через задачу-вызов: как сделать это иначе и лучше, чем принято.</td><td data-l="Как контролировать">По итогу, без надзора над способом. Способ у него будет свой.</td><td data-l="Что убивает его мотивацию">Жёсткие рамки и требование делать «как всегда делали».</td></tr><tr data-sign="Рыбы"><td data-l="Знак"><b>Рыбы</b></td><td data-l="Как ставить задачу">Мягко, с примером и опорой. Проверь, что задача понята, попроси пересказать.</td><td data-l="Как контролировать">Регулярно и бережно, короткими сверками. Без них он теряет берег.</td><td data-l="Что убивает его мотивацию">Давление, жёсткие дедлайны без поддержки и работа в атмосфере напряжения.</td></tr></tbody></table></div></div><div class="note">Матрица описывает рабочее поведение, а не характер человека целиком. Если сотрудник ведёт себя иначе, значит в его карте сильнее работает другая часть: чаще всего это асцендент или Марс. Тогда смотрим карту точечно.</div></div>
+<div class="sec"><h2 id="sec-2">Шаг 2. Твой стиль: почему ты не отпускаешь</h2><p>Найди свой знак. Это про твою слепую зону как руководителя, ту самую четвёртую причину.</p><div class="grid2"><div class="cardb"><h3>Огонь: Овен, Лев, Стрелец</h3><p>Ты отдаёшь задачу и ждёшь скорости, как у себя. Держишься за темп. Лечится сроком с запасом и запретом дёргать человека раньше контрольной точки.</p></div><div class="cardb"><h3>Земля: Телец, Дева, Козерог</h3><p>Ты держишься за качество и переделываешь за людьми. Лечится письменным критерием «готово»: если совпало с критерием, значит принято, даже когда ты сделала бы иначе.</p></div><div class="cardb"><h3>Воздух: Близнецы, Весы, Водолей</h3><p>Ты держишься за идею и меняешь условия на ходу. Лечится правилом: новые вводные копятся до конца этапа, а не летят в человека сразу.</p></div><div class="cardb"><h3>Вода: Рак, Скорпион, Рыбы</h3><p>Ты держишься за контроль над смыслом и не договариваешь до конца. Лечится тем, чтобы отдавать зону вместе с правом на ошибку и говорить ставку прямо.</p></div></div><p>Проверь себя за прошлую неделю: сколько задач ты отдала и сколько из них вернулись к тебе на доработку или на решение. Отношение выше трети означает, что дело не в людях, а в способе постановки. Это чинится за две недели.</p></div>
+<div class="mid"><a href="https://t.me/tereshchenkoirina">Личная консультация</a></div>
+<div class="sec"><h2 id="sec-3">Шаг 3. Промпт для постановки задачи</h2><p>Работает под конкретного человека. Подставь его знак из матрицы и свою задачу.</p><div class="lblrow"><span class="lbl">Промпт</span><button class="copy" data-text="Помоги мне поставить задачу сотруднику так, чтобы он её сделал с первого раза.
+
+Данные: знак сотрудника [впиши], как ему ставить задачу по матрице [впиши строку «Как ставить задачу»], как контролировать [впиши], что его демотивирует [впиши].
+Мой знак и моя слепая зона как руководителя: [впиши стихию и формулировку из раздела про стиль].
+Задача: [опиши своими словами, что нужно сделать].
+Срок: [впиши].
+
+Сделай три вещи.
+1. Сформулируй саму задачу в том формате, который подходит этому человеку. Дай готовый текст, который я скопирую и отправлю.
+2. Предложи схему контроля: сколько точек, когда и в какой форме.
+3. Назови, что в моей формулировке идёт от моей слепой зоны и рискует сорвать задачу.
+
+Запреты. Не выдумывай натальную карту сотрудника, у тебя только знак. Не давай оценок его личности и не строй прогнозов про его будущее в компании. Работай только с постановкой задачи.">Скопировать</button></div><div class="box">Помоги мне поставить задачу сотруднику так, чтобы он её сделал с первого раза.
+
+Данные: знак сотрудника [впиши], как ему ставить задачу по матрице [впиши строку «Как ставить задачу»], как контролировать [впиши], что его демотивирует [впиши].
+Мой знак и моя слепая зона как руководителя: [впиши стихию и формулировку из раздела про стиль].
+Задача: [опиши своими словами, что нужно сделать].
+Срок: [впиши].
+
+Сделай три вещи.
+1. Сформулируй саму задачу в том формате, который подходит этому человеку. Дай готовый текст, который я скопирую и отправлю.
+2. Предложи схему контроля: сколько точек, когда и в какой форме.
+3. Назови, что в моей формулировке идёт от моей слепой зоны и рискует сорвать задачу.
+
+Запреты. Не выдумывай натальную карту сотрудника, у тебя только знак. Не давай оценок его личности и не строй прогнозов про его будущее в компании. Работай только с постановкой задачи.</div><div class="note">Матрица работает на уровне знака и этого достаточно для постановки задач. Совместимость в команде, зоны конфликта между конкретными людьми и то, кого вообще не стоит ставить рядом, считаются по картам целиком.</div></div>
+<div class="cta"><span class="eyebrow"><i class="dot"></i>Следующий шаг</span><div class="ttl">Разобрать свою карту лично</div><p class="sub">Материалы это база, а точный маршрут для конкретно твоей ситуации я показываю на консультации.</p><a class="cta-btn" href="https://t.me/tereshchenkoirina">Написать Ирине<span class="ar">&#8594;</span></a></div>
+</article>
+<aside class="toc"><div class="h">На странице</div><a href="#sec-0">Почему задача возвращается обратно</a><a href="#sec-1">Шаг 1. Матрица: как делегировать каждому знаку</a><a href="#sec-2">Шаг 2. Твой стиль: почему ты не отпускаешь</a><a href="#sec-3">Шаг 3. Промпт для постановки задачи</a></aside>
+</main>
+<footer class="ft"><div class="ft-in"><a class="logo" href="/">Ирина<i class="sq"></i>Терещенко</a><span class="sp"></span><nav class="ft-links"><a href="/">Все материалы</a><a href="/about/">Обо мне</a><a href="https://t.me/tereshchenkoirina">Личная консультация</a></nav></div><div class="ft-bot">Ирина Терещенко · @irinatereshchenko_metaastrolog · @tereshchenkoirina</div></footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(b.getAttribute('data-text')).then(function(){
+      var o=b.textContent;b.textContent='Скопировано';b.classList.add('done');
+      setTimeout(function(){b.textContent=o;b.classList.remove('done');},1600);
+    });
+  });
+});
+</script>
+
+<script>
+(function(){
+  var links=document.querySelectorAll('.toc a');
+  var heads=Array.prototype.slice.call(document.querySelectorAll('.sec h2[id]'));
+  if(!links.length||!heads.length)return;
+  function mark(){
+    var cur=0;
+    for(var i=0;i<heads.length;i++){
+      if(heads[i].getBoundingClientRect().top<=90)cur=i;else break;
+    }
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+  }
+  // The observer fires exactly when a heading crosses the band under the header, which
+  // is exactly when the active section can change. The class is then set from geometry
+  // so a section taller than the band (most of them) never leaves the menu blank.
+  if(window.IntersectionObserver){
+    var io=new IntersectionObserver(mark,{rootMargin:'-86px 0px -70% 0px',threshold:0});
+    heads.forEach(function(h){io.observe(h);});
+  }else{
+    window.addEventListener('scroll',mark,{passive:true});
+  }
+  mark();
+  links.forEach(function(a){a.addEventListener('click',function(e){
+    var h=a.getAttribute('href'),el=document.getElementById(h.slice(1));
+    if(!el)return;
+    e.preventDefault();
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+    history.replaceState(null,'',h);
+  });});
+})();
+</script>
+
+<script>
+(function(){
+  var box=document.querySelector('.asc');if(!box)return;
+  // Часовые пояса приезжают из системной базы tzdata через gen_asc_tzdata.py: декретное время,
+  // летнее время 1981-2010, круглогодичное летнее 2011-2014 и переносы регионов уже внутри.
+  // Ошибка в час это до целого знака асцендента, поэтому руками эта таблица не пишется.
+  var TZ={"zones":["Asia/Almaty","Asia/Ashgabat","Asia/Baku","Asia/Barnaul","Asia/Bishkek","Asia/Chita","Asia/Dushanbe","Asia/Irkutsk","Asia/Kamchatka","Asia/Krasnoyarsk","Asia/Magadan","Asia/Novokuznetsk","Asia/Novosibirsk","Asia/Omsk","Asia/Sakhalin","Asia/Tashkent","Asia/Tbilisi","Asia/Tomsk","Asia/Vladivostok","Asia/Yakutsk","Asia/Yekaterinburg","Asia/Yerevan","Europe/Astrakhan","Europe/Chisinau","Europe/Kaliningrad","Europe/Kirov","Europe/Kyiv","Europe/Minsk","Europe/Moscow","Europe/Riga","Europe/Samara","Europe/Saratov","Europe/Tallinn","Europe/Ulyanovsk","Europe/Vilnius","Europe/Volgograd"],"trans":[[[-1577923200,307],[-1441170435,300],[-1247547571,360],[354909600,420],[370717214,360],[386445600,420],[402253214,360],[417981600,420],[433789214,360],[449604000,420],[465336014,360],[481060814,420],[496785614,360],[512510414,420],[528235214,360],[543960014,420],[559684814,360],[575409614,420],[591134414,360],[606859214,420],[622584014,360],[638308814,420],[654638414,360],[686091600,300],[695768400,360],[701812814,420],[717537614,360],[733262414,420],[748987214,360],[764712014,420],[780436814,360],[796161614,420],[811886414,360],[828216014,420],[846360014,360],[859665614,420],[877809614,360],[891115214,420],[909259214,360],[922564814,420],[941313614,360],[954014414,420],[972763214,360],[985464014,420],[1004212814,360],[1017518414,420],[1035662414,360],[1048968014,420],[1067112014,360],[1080417614,420],[1099166414,360],[1709229600,300]],[[-1577923200,233],[-1441166006,240],[-1247543985,300],[354913228,360],[370720800,300],[386449228,360],[402256800,300],[417985228,360],[433792800,300],[449607628,360],[465339600,300],[481064400,360],[496789200,300],[512514000,360],[528238800,300],[543963600,360],[559688400,300],[575413200,360],[591138000,300],[606862800,360],[622587600,300],[638312400,360],[654642000,300],[686095228,240],[695772028,300]],[[-1577923200,199],[-1441163939,180],[-405140400,240],[354916814,300],[370724428,240],[386452814,300],[402260428,240],[417988814,300],[433796428,240],[449611214,300],[465343228,240],[481068028,300],[496792828,240],[512517628,300],[528242428,240],[543967228,300],[559692028,240],[575416828,300],[591141628,240],[606866428,300],[622591228,240],[638316028,300],[654645628,240],[686098814,180],[701823614,240],[828234028,300],[846378028,240],[859680000,300],[877824000,240],[891129600,300],[909273600,240],[922579200,300],[941328000,240],[954028800,300],[972777600,240],[985478400,300],[1004227200,240],[1017532800,300],[1035676800,240],[1048982400,300],[1067126400,240],[1080432000,300],[1099180800,240],[1111881600,300],[1130630400,240],[1143331200,300],[1162080000,240],[1174780800,300],[1193529600,240],[1206835200,300],[1224979200,240],[1238284800,300],[1256428800,240],[1269734400,300],[1288483200,240],[1301184000,300],[1319932800,240],[1332633600,300],[1351382400,240],[1364688000,300],[1382832000,240],[1396137600,300],[1414281600,240],[1427587200,300],[1445731200,240]],[[-1577923200,360],[-1247551200,420],[354906014,480],[370713628,420],[386442014,480],[402249628,420],[417978014,480],[433785628,420],[449600414,480],[465332428,420],[481057228,480],[496782028,420],[512506828,480],[528231628,420],[543956428,480],[559681228,420],[575406028,480],[591130828,420],[606855628,480],[622580428,420],[638305228,480],[654634828,420],[686088014,360],[695764814,420],[701809228,480],[717534028,420],[733258828,480],[748983628,420],[764708428,480],[780433228,420],[796158028,480],[801590428,420],[811886414,360],[828216014,420],[846360014,360],[859665614,420],[877809614,360],[891115214,420],[909259214,360],[922564814,420],[941313614,360],[954014414,420],[972763214,360],[985464014,420],[1004212814,360],[1017518414,420],[1035662414,360],[1048968014,420],[1067112014,360],[1080417614,420],[1099166414,360],[1111867214,420],[1130616014,360],[1143316814,420],[1162065614,360],[1174766414,420],[1193515214,360],[1206820814,420],[1224964814,360],[1238270414,420],[1256414414,360],[1269720014,420],[1288468814,360],[1301169614,420],[1414263628,360],[1459022414,420]],[[-1577923200,298],[-1441169887,300],[-1247547571,360],[354909600,420],[370717214,360],[386445600,420],[402253214,360],[417981600,420],[433789214,360],[449604000,420],[465336014,360],[481060814,420],[496785614,360],[512510414,420],[528235214,360],[543960014,420],[559684814,360],[575409614,420],[591134414,360],[606859214,420],[622584014,360],[638308814,420],[654638414,360],[683582414,300],[703018828,360],[717530400,300],[734468428,360],[748980000,300],[765918028,360],[780429600,300],[797367628,360],[811879200,300],[828817228,360],[843933600,300],[859671014,360],[877811428,300],[891120614,360],[909261028,300],[922570214,360],[941315428,300],[954019814,360],[972765028,300],[985469414,360],[1004214628,300],[1017523814,360],[1035664228,300],[1048973414,360],[1067113828,300],[1080423014,360],[1099168228,300],[1111872614,360]],[[-1577923200,480],[-1247558371,540],[354898800,600],[370706414,540],[386434800,600],[402242414,540],[417970800,600],[433778414,540],[449593200,600],[465325214,540],[481050014,600],[496774814,540],[512499614,600],[528224414,540],[543949214,600],[559674014,540],[575398814,600],[591123614,540],[606848414,600],[622573214,540],[638298014,600],[654627614,540],[686080800,480],[695757600,540],[701802014,600],[717526814,540],[733251614,600],[748976414,540],[764701214,600],[780426014,540],[796150814,600],[811875614,540],[828205214,600],[846349214,540],[859654814,600],[877798814,540],[891104414,600],[909248414,540],[922554014,600],[941302814,540],[954003614,600],[972752414,540],[985453214,600],[1004202014,540],[1017507614,600],[1035651614,540],[1048957214,600],[1067101214,540],[1080406814,600],[1099155614,540],[1111856414,600],[1130605214,540],[1143306014,600],[1162054814,540],[1174755614,600],[1193504414,540],[1206810014,600],[1224954014,540],[1238259614,600],[1256403614,540],[1269709214,600],[1288458014,540],[1301158814,600],[1414252828,480],[1459015200,540]],[[-1577923200,275],[-1441168495,300],[-1247547571,360],[354909600,420],[370717214,360],[386445600,420],[402253214,360],[417981600,420],[433789214,360],[449604000,420],[465336014,360],[481060814,420],[496785614,360],[512510414,420],[528235214,360],[543960014,420],[559684814,360],[575409614,420],[591134414,360],[606859214,420],[622584014,360],[638308814,420],[654638414,360],[684363600,300]],[[-1577923200,417],[-1575874617,420],[-1247554785,480],[354902428,540],[370710000,480],[386438428,540],[402246000,480],[417974428,540],[433782000,480],[449596828,540],[465328800,480],[481053600,540],[496778400,480],[512503200,540],[528228000,480],[543952800,540],[559677600,480],[575402400,540],[591127200,480],[606852000,540],[622576800,480],[638301600,540],[654631200,480],[686084428,420],[695761228,480],[701805600,540],[717530400,480],[733255200,540],[748980000,480],[764704800,540],[780429600,480],[796154400,540],[811879200,480],[828208800,540],[846352800,480],[859658400,540],[877802400,480],[891108000,540],[909252000,480],[922557600,540],[941306400,480],[954007200,540],[972756000,480],[985456800,540],[1004205600,480],[1017511200,540],[1035655200,480],[1048960800,540],[1067104800,480],[1080410400,540],[1099159200,480],[1111860000,540],[1130608800,480],[1143309600,540],[1162058400,480],[1174759200,540],[1193508000,480],[1206813600,540],[1224957600,480],[1238263200,540],[1256407200,480],[1269712800,540],[1288461600,480],[1301162400,540],[1414256414,480]],[[-1577923200,634],[-1487759653,660],[-1247569171,720],[354888000,780],[370695614,720],[386424000,780],[402231614,720],[417960000,780],[433767614,720],[449582400,780],[465314414,720],[481039214,780],[496764014,720],[512488814,780],[528213614,720],[543938414,780],[559663214,720],[575388014,780],[591112814,720],[606837614,780],[622562414,720],[638287214,780],[654616814,720],[686070000,660],[695746800,720],[701791214,780],[717516014,720],[733240814,780],[748965614,720],[764690414,780],[780415214,720],[796140014,780],[811864814,720],[828194414,780],[846338414,720],[859644014,780],[877788014,720],[891093614,780],[909237614,720],[922543214,780],[941292014,720],[953992814,780],[972741614,720],[985442414,780],[1004191214,720],[1017496814,780],[1035640814,720],[1048946414,780],[1067090414,720],[1080396014,780],[1099144814,720],[1111845614,780],[1130594414,720],[1143295214,780],[1162044014,720],[1174744814,780],[1193493614,720],[1206799214,780],[1224943214,720],[1238248814,780],[1256392814,720],[1288450800,660],[1301151600,720]],[[-1577923200,371],[-1577513475,360],[-1247551200,420],[354906014,480],[370713628,420],[386442014,480],[402249628,420],[417978014,480],[433785628,420],[449600414,480],[465332428,420],[481057228,480],[496782028,420],[512506828,480],[528231628,420],[543956428,480],[559681228,420],[575406028,480],[591130828,420],[606855628,480],[622580428,420],[638305228,480],[654634828,420],[686088014,360],[695764814,420],[701809228,480],[717534028,420],[733258828,480],[748983628,420],[764708428,480],[780433228,420],[796158028,480],[811882828,420],[828212428,480],[846356428,420],[859662028,480],[877806028,420],[891111628,480],[909255628,420],[922561228,480],[941310028,420],[954010828,480],[972759628,420],[985460428,480],[1004209228,420],[1017514828,480],[1035658828,420],[1048964428,480],[1067108428,420],[1080414028,480],[1099162828,420],[1111863628,480],[1130612428,420],[1143313228,480],[1162062028,420],[1174762828,480],[1193511628,420],[1206817228,480],[1224961228,420],[1238266828,480],[1256410828,420],[1269716428,480],[1288465228,420],[1301166028,480],[1414260000,420]],[[-1577923200,603],[-1441188154,600],[-1247565585,660],[354891628,720],[370699200,660],[386427628,720],[402235200,660],[417963628,720],[433771200,660],[449586028,720],[465318000,660],[481042800,720],[496767600,660],[512492400,720],[528217200,660],[543942000,720],[559666800,660],[575391600,720],[591116400,660],[606841200,720],[622566000,660],[638290800,720],[654620400,660],[686073628,600],[695750428,660],[701794800,720],[717519600,660],[733244400,720],[748969200,660],[764694000,720],[780418800,660],[796143600,720],[811868400,660],[828198000,720],[846342000,660],[859647600,720],[877791600,660],[891097200,720],[909241200,660],[922546800,720],[941295600,660],[953996400,720],[972745200,660],[985446000,720],[1004194800,660],[1017500400,720],[1035644400,660],[1048950000,720],[1067094000,660],[1080399600,720],[1099148400,660],[1111849200,720],[1130598000,660],[1143298800,720],[1162047600,660],[1174748400,720],[1193497200,660],[1206802800,720],[1224946800,660],[1238252400,720],[1256396400,660],[1269702000,720],[1288450800,660],[1301151600,720],[1414245614,600],[1461427228,660]],[[-1577923200,348],[-1441259325,360],[-1247551200,420],[354906014,480],[370713628,420],[386442014,480],[402249628,420],[417978014,480],[433785628,420],[449600414,480],[465332428,420],[481057228,480],[496782028,420],[512506828,480],[528231628,420],[543956428,480],[559681228,420],[575406028,480],[591130828,420],[606855628,480],[622580428,420],[638305228,480],[654634828,420],[686088014,360],[695764814,420],[701809228,480],[717534028,420],[733258828,480],[748983628,420],[764708428,480],[780433228,420],[796158028,480],[811882828,420],[828212428,480],[846356428,420],[859662028,480],[877806028,420],[891111628,480],[909255628,420],[922561228,480],[941310028,420],[954010828,480],[972759628,420],[985460428,480],[1004209228,420],[1017514828,480],[1035658828,420],[1048964428,480],[1067108428,420],[1080414028,480],[1099162828,420],[1111863628,480],[1130612428,420],[1143313228,480],[1162062028,420],[1174762828,480],[1193511628,420],[1206817228,480],[1224961228,420],[1238266828,480],[1256410828,420],[1288468814,360],[1301169614,420]],[[-1577923200,360],[-1247551200,420],[354906014,480],[370713628,420],[386442014,480],[402249628,420],[417978014,480],[433785628,420],[449600414,480],[465332428,420],[481057228,480],[496782028,420],[512506828,480],[528231628,420],[543956428,480],[559681228,420],[575406028,480],[591130828,420],[606855628,480],[622580428,420],[638305228,480],[654634828,420],[686088014,360],[695764814,420],[701809228,480],[717534028,420],[733258828,480],[738086428,420],[748987214,360],[764712014,420],[780436814,360],[796161614,420],[811886414,360],[828216014,420],[846360014,360],[859665614,420],[877809614,360],[891115214,420],[909259214,360],[922564814,420],[941313614,360],[954014414,420],[972763214,360],[985464014,420],[1004212814,360],[1017518414,420],[1035662414,360],[1048968014,420],[1067112014,360],[1080417614,420],[1099166414,360],[1111867214,420],[1130616014,360],[1143316814,420],[1162065614,360],[1174766414,420],[1193515214,360],[1206820814,420],[1224964814,360],[1238270414,420],[1256414414,360],[1269720014,420],[1288468814,360],[1301169614,420],[1414263628,360],[1469304014,420]],[[-1577923200,300],[-1247547571,360],[354909600,420],[370717214,360],[386445600,420],[402253214,360],[417981600,420],[433789214,360],[449604000,420],[465336014,360],[481060814,420],[496785614,360],[512510414,420],[528235214,360],[543960014,420],[559684814,360],[575409614,420],[591134414,360],[606859214,420],[622584014,360],[638308814,420],[654638414,360],[686091600,300],[695768400,360],[701812814,420],[717537614,360],[733262414,420],[748987214,360],[764712014,420],[780436814,360],[796161614,420],[811886414,360],[828216014,420],[846360014,360],[859665614,420],[877809614,360],[891115214,420],[909259214,360],[922564814,420],[941313614,360],[954014414,420],[972763214,360],[985464014,420],[1004212814,360],[1017518414,420],[1035662414,360],[1048968014,420],[1067112014,360],[1080417614,420],[1099166414,360],[1111867214,420],[1130616014,360],[1143316814,420],[1162065614,360],[1174766414,420],[1193515214,360],[1206820814,420],[1224964814,360],[1238270414,420],[1256414414,360],[1269720014,420],[1288468814,360],[1301169614,420],[1414263628,360]],[[-1577923200,540],[-768560400,660],[354891628,720],[370699200,660],[386427628,720],[402235200,660],[417963628,720],[433771200,660],[449586028,720],[465318000,660],[481042800,720],[496767600,660],[512492400,720],[528217200,660],[543942000,720],[559666800,660],[575391600,720],[591116400,660],[606841200,720],[622566000,660],[638290800,720],[654620400,660],[686073628,600],[695750428,660],[701794800,720],[717519600,660],[733244400,720],[748969200,660],[764694000,720],[780418800,660],[796143600,720],[811868400,660],[828198000,720],[846342000,660],[877795228,600],[891100828,660],[909244828,600],[922550428,660],[941299228,600],[954000028,660],[972748828,600],[985449628,660],[1004198428,600],[1017504028,660],[1035648028,600],[1048953628,660],[1067097628,600],[1080403228,660],[1099152028,600],[1111852828,660],[1130601628,600],[1143302428,660],[1162051228,600],[1174752028,660],[1193500828,600],[1206806428,660],[1224950428,600],[1238256028,660],[1256400028,600],[1269705628,660],[1288454428,600],[1301155228,660],[1414249200,600],[1459008028,660]],[[-1577923200,277],[-1441168621,300],[-1247547571,360],[354909600,420],[370717214,360],[386445600,420],[402253214,360],[417981600,420],[433789214,360],[449604000,420],[465336014,360],[481060814,420],[496785614,360],[512510414,420],[528235214,360],[543960014,420],[559684814,360],[575409614,420],[591134414,360],[606859214,420],[622584014,360],[638308814,420],[654638414,360],[686091600,300]],[[-1577923200,179],[-1441162715,180],[-405140400,240],[354916814,300],[370724428,240],[386452814,300],[402260428,240],[417988814,300],[433796428,240],[449611214,300],[465343228,240],[481068028,300],[496792828,240],[512517628,300],[528242428,240],[543967228,300],[559692028,240],[575416828,300],[591141628,240],[606866428,300],[622591228,240],[638316028,300],[654645628,240],[686098814,180],[701816400,240],[717537614,180],[733266000,240],[748987214,180],[764715600,240],[796161614,300],[811882828,240],[828216014,300],[877806028,240],[891115214,300],[909255628,240],[922564814,300],[941310028,240],[954014414,300],[972759628,240],[985464014,300],[1004209228,240],[1017518414,300],[1035658828,240],[1048968014,300],[1067108428,240],[1080417614,300],[1088276428,240],[1099177214,180],[1111878014,240]],[[-1577923200,360],[-1247551200,420],[354906014,480],[370713628,420],[386442014,480],[402249628,420],[417978014,480],[433785628,420],[449600414,480],[465332428,420],[481057228,480],[496782028,420],[512506828,480],[528231628,420],[543956428,480],[559681228,420],[575406028,480],[591130828,420],[606855628,480],[622580428,420],[638305228,480],[654634828,420],[686088014,360],[695764814,420],[701809228,480],[717534028,420],[733258828,480],[748983628,420],[764708428,480],[780433228,420],[796158028,480],[811882828,420],[828212428,480],[846356428,420],[859662028,480],[877806028,420],[891111628,480],[909255628,420],[922561228,480],[941310028,420],[954010828,480],[972759628,420],[985460428,480],[1004209228,420],[1017514828,480],[1020193228,420],[1035662414,360],[1048968014,420],[1067112014,360],[1080417614,420],[1099166414,360],[1111867214,420],[1130616014,360],[1143316814,420],[1162065614,360],[1174766414,420],[1193515214,360],[1206820814,420],[1224964814,360],[1238270414,420],[1256414414,360],[1269720014,420],[1288468814,360],[1301169614,420],[1414263628,360],[1464465614,420]],[[-1577923200,527],[-1487321240,540],[-1247562000,600],[354895214,660],[370702828,600],[386431214,660],[402238828,600],[417967214,660],[433774828,600],[449589614,660],[465321628,600],[481046428,660],[496771228,600],[512496028,660],[528220828,600],[543945628,660],[559670428,600],[575395228,660],[591120028,600],[606844828,660],[622569628,600],[638294428,660],[654624028,600],[686077214,540],[695754014,600],[701798428,660],[717523228,600],[733248028,660],[748972828,600],[764697628,660],[780422428,600],[796147228,660],[811872028,600],[828201628,660],[846345628,600],[859651228,660],[877795228,600],[891100828,660],[909244828,600],[922550428,660],[941299228,600],[954000028,660],[972748828,600],[985449628,660],[1004198428,600],[1017504028,660],[1035648028,600],[1048953628,660],[1067097628,600],[1080403228,660],[1099152028,600],[1111852828,660],[1130601628,600],[1143302428,660],[1162051228,600],[1174752028,660],[1193500828,600],[1206806428,660],[1224950428,600],[1238256028,660],[1256400028,600],[1269705628,660],[1288454428,600],[1301155228,660],[1414249200,600]],[[-1577923200,480],[-1247558371,540],[354898800,600],[370706414,540],[386434800,600],[402242414,540],[417970800,600],[433778414,540],[449593200,600],[465325214,540],[481050014,600],[496774814,540],[512499614,600],[528224414,540],[543949214,600],[559674014,540],[575398814,600],[591123614,540],[606848414,600],[622573214,540],[638298014,600],[654627614,540],[686080800,480],[695757600,540],[701802014,600],[717526814,540],[733251614,600],[748976414,540],[764701214,600],[780426014,540],[796150814,600],[811875614,540],[828205214,600],[846349214,540],[859654814,600],[877798814,540],[891104414,600],[909248414,540],[922554014,600],[941302814,540],[954003614,600],[972752414,540],[985453214,600],[1004202014,540],[1017507614,600],[1035651614,540],[1048957214,600],[1067101214,540],[1080406814,600],[1099155614,540],[1111856414,600],[1130605214,540],[1143306014,600],[1162054814,540],[1174755614,600],[1193504414,540],[1206810014,600],[1224954014,540],[1238259614,600],[1256403614,540],[1269709214,600],[1288458014,540],[1301158814,600],[1414252828,540]],[[-1577923200,240],[-1247543985,300],[354913228,360],[370720800,300],[386449228,360],[402256800,300],[417985228,360],[433792800,300],[449607628,360],[465339600,300],[481064400,360],[496789200,300],[512514000,360],[528238800,300],[543963600,360],[559688400,300],[575413200,360],[591138000,300],[606862800,360],[622587600,300],[638312400,360],[654642000,300],[686095228,240],[695772028,300],[701816400,360],[717541200,300],[733266000,360],[748990800,300],[764715600,360],[780440400,300],[796165200,360],[811890000,300],[828219600,360],[846363600,300],[859669200,360],[877813200,300],[891118800,360],[909262800,300],[922568400,360],[941317200,300],[954018000,360],[972766800,300],[985467600,360],[1004216400,300],[1017522000,360],[1035666000,300],[1048971600,360],[1067115600,300],[1080421200,360],[1099170000,300],[1111870800,360],[1130619600,300],[1143320400,360],[1162069200,300],[1174770000,360],[1193518800,300],[1206824400,360],[1224968400,300],[1238274000,360],[1256418000,300],[1269723600,360],[1288472400,300],[1301173200,360],[1414267214,300]],[[-1577923200,178],[-1441162673,180],[-405140400,240],[354916814,300],[370724428,240],[386452814,300],[402260428,240],[417988814,300],[433796428,240],[449611214,300],[465343228,240],[481068028,300],[496792828,240],[512517628,300],[528242428,240],[543967228,300],[559692028,240],[575416828,300],[591141628,240],[606866428,300],[622591228,240],[638316028,300],[654645628,240],[686098814,180],[701823614,240],[717548414,180],[733273214,240],[748998014,180],[764722814,240],[780447614,180],[796172414,240],[859672828,300],[877816828,240],[891122428,300],[909266428,240],[922572028,300],[941320828,240],[954021628,300],[972770428,240],[985471228,300],[1004220028,240],[1017525628,300],[1035669628,240],[1048975228,300],[1067119228,240],[1080424828,300],[1099173628,240],[1111874428,300],[1130623228,240],[1143324028,300],[1162072828,240],[1174773628,300],[1193522428,240],[1206828028,300],[1224972028,240],[1238277628,300],[1256421628,240],[1269727228,300],[1288476028,240],[1301176828,300],[1319925628,240]],[[-1577923200,192],[-1441249917,180],[-1247540400,240],[354916814,300],[370724428,240],[386452814,300],[402260428,240],[417988814,300],[433796428,240],[449611214,300],[465343228,240],[481068028,300],[496792828,240],[512517628,300],[528242428,240],[543967228,300],[559692028,240],[575416828,300],[591141628,240],[622594814,180],[638319614,240],[654649214,180],[670374014,240],[717548414,180],[733273214,240],[748998014,180],[764722814,240],[780447614,180],[796172414,240],[811897214,180],[828226814,240],[846370814,180],[859676414,240],[877820414,180],[891126014,240],[909270014,180],[922575614,240],[941324414,180],[954025214,240],[972774014,180],[985474814,240],[1004223614,180],[1017529214,240],[1035673214,180],[1048978814,240],[1067122814,180],[1080428414,240],[1099177214,180],[1111878014,240],[1130626814,180],[1143327614,240],[1162076414,180],[1174777214,240],[1193526014,180],[1206831614,240],[1224975614,180],[1238281214,240],[1256425214,180],[1269730814,240],[1288479614,180],[1301180414,240],[1414274428,180],[1459033214,240]],[[-1577923200,104],[-1213148643,120],[-1187056771,180],[-1175479171,120],[-1159754371,180],[-1144029571,120],[-1127699971,180],[-1111975171,120],[-1096250371,180],[-1080525571,120],[-1064800771,180],[-1049075971,120],[-1033351171,180],[-1017626371,120],[-1001901571,180],[-986176771,120],[-970451971,180],[-954727171,120],[-927165571,180],[-898138800,120],[-857257171,60],[-844556371,120],[-828226771,60],[-812501971,120],[-800157571,180],[354920400,240],[370728014,180],[386456400,240],[402264014,180],[417992400,240],[433800014,180],[449614800,240],[465346814,180],[481071614,240],[496796414,180],[512521214,240],[528246014,180],[543970814,240],[559695614,180],[575420414,240],[591145214,180],[606870014,240],[622594814,180],[638319614,240],[641944828,180],[654652800,120],[670377600,180],[686102400,120],[701820028,180],[717541200,120],[733269628,180],[748990800,120],[764719228,180],[780440400,120],[796168828,180],[811890000,120],[828223228,180],[846363600,120],[859680000,180],[877824000,120],[891129600,180],[909273600,120],[922579200,180],[941328000,120],[954028800,180],[972777600,120],[985478400,180],[1004227200,120],[1017532800,180],[1035676800,120],[1048982400,180],[1067126400,120],[1080432000,180],[1099180800,120],[1111881600,180],[1130630400,120],[1143331200,180],[1162080000,120],[1174780800,180],[1193529600,120],[1206835200,180],[1224979200,120],[1238284800,180],[1256428800,120],[1269734400,180],[1288483200,120],[1301184000,180],[1319932800,120],[1332633600,180],[1351382400,120],[1364688000,180],[1382832000,120],[1396137600,180],[1414281600,120],[1427587200,180],[1445731200,120],[1459036800,180],[1477785600,120],[1490486400,180],[1509235200,120],[1521936000,180],[1540684800,120],[1553990400,180],[1572134400,120],[1585440000,180],[1603584000,120],[1616889600,180],[1635638400,120],[1648342828,180],[1667091628,120],[1679792428,180],[1698541228,120],[1711846828,180],[1729990828,120],[1743296428,180],[1761440428,120],[1774746028,180],[1792890028,120],[1806195628,180],[1824944428,120],[1837645228,180],[1856394028,120],[1869094828,180],[1887843628,120],[1901149228,180],[1919293228,120],[1932598828,180],[1950742828,120],[1964048428,180],[1982797228,120],[1995498028,180],[2014246828,120],[2026947628,180],[2045696428,120]],[[-1577923200,60],[-938905171,120],[-857257171,60],[-844556371,120],[-828226771,60],[-812501971,120],[-796777171,60],[-781052371,120],[-778730371,180],[-762663600,120],[-749095171,180],[354920400,240],[370728014,180],[386456400,240],[402264014,180],[417992400,240],[433800014,180],[449614800,240],[465346814,180],[481071614,240],[496796414,180],[512521214,240],[528246014,180],[543970814,240],[559695614,180],[575420414,240],[591145214,180],[622598400,120],[638323200,180],[654652800,120],[670377600,180],[686102400,120],[701827200,180],[717552000,120],[733276800,180],[749001600,120],[764726400,180],[780451200,120],[796176000,180],[811900800,120],[828230400,180],[846374400,120],[859680000,180],[877824000,120],[891129600,180],[909273600,120],[922579200,180],[941328000,120],[954028800,180],[972777600,120],[985478400,180],[1004227200,120],[1017532800,180],[1035676800,120],[1048982400,180],[1067126400,120],[1080432000,180],[1099180800,120],[1111881600,180],[1130630400,120],[1143331200,180],[1162080000,120],[1174780800,180],[1193529600,120],[1206835200,180],[1224979200,120],[1238284800,180],[1256428800,120],[1269734400,180],[1288483200,120],[1301184000,180],[1414278014,120]],[[-1577923200,180],[-1247540400,240],[354916814,300],[370724428,240],[386452814,300],[402260428,240],[417988814,300],[433796428,240],[449611214,300],[465343228,240],[481068028,300],[496792828,240],[512517628,300],[528242428,240],[543967228,300],[559692028,240],[575416828,300],[591141628,240],[622594814,180],[638319614,240],[654649214,180],[670374014,240],[717548414,180],[733273214,240],[748998014,180],[764722814,240],[780447614,180],[796172414,240],[811897214,180],[828226814,240],[846370814,180],[859676414,240],[877820414,180],[891126014,240],[909270014,180],[922575614,240],[941324414,180],[954025214,240],[972774014,180],[985474814,240],[1004223614,180],[1017529214,240],[1035673214,180],[1048978814,240],[1067122814,180],[1080428414,240],[1099177214,180],[1111878014,240],[1130626814,180],[1143327614,240],[1162076414,180],[1174777214,240],[1193526014,180],[1206831614,240],[1224975614,180],[1238281214,240],[1256425214,180],[1269730814,240],[1288479614,180],[1301180414,240],[1414274428,180]],[[-1577923200,122],[-1441159298,120],[-1247536771,180],[-892522800,120],[-857257171,60],[-844556371,120],[-828226771,60],[-825382785,180],[354920400,240],[370728014,180],[386456400,240],[402264014,180],[417992400,240],[433800014,180],[449614800,240],[465346814,180],[481071614,240],[496796414,180],[512521214,240],[528246014,180],[543970814,240],[559695614,180],[575420414,240],[591145214,180],[606870014,240],[622594814,180],[638319614,240],[646783228,180],[686102400,120],[701827200,180],[717552000,120],[733276800,180],[749001600,120],[764726400,180],[780451200,120],[796176000,180],[811900800,120],[828230400,180],[846378028,120],[859683628,180],[877827628,120],[891133228,180],[909277228,120],[922582828,180],[941331628,120],[954032428,180],[972781228,120],[985482028,180],[1004230828,120],[1017536428,180],[1035680428,120],[1048986028,180],[1067130028,120],[1080435628,180],[1099184428,120],[1111885228,180],[1130634028,120],[1143334828,180],[1162083628,120],[1174784428,180],[1193533228,120],[1206838828,180],[1224982828,120],[1238288428,180],[1256432428,120],[1269738028,180],[1288486828,120],[1301187628,180],[1319936428,120],[1332637228,180],[1351386028,120],[1364691628,180],[1382835628,120],[1396141228,180],[1414285228,120],[1427590828,180],[1445734828,120],[1459040428,180],[1477789228,120],[1490490028,180],[1509238828,120],[1521939628,180],[1540688428,120],[1553994028,180],[1572138028,120],[1585443628,180],[1603587628,120],[1616893228,180],[1635642028,120],[1648342828,180],[1667091628,120],[1679792428,180],[1698541228,120],[1711846828,180],[1729990828,120],[1743296428,180],[1761440428,120],[1774746028,180],[1792890028,120],[1806195628,180],[1824944428,120],[1837645228,180],[1856394028,120],[1869094828,180],[1887843628,120],[1901149228,180],[1919293228,120],[1932598828,180],[1950742828,120],[1964048428,180],[1982797228,120],[1995498028,180],[2014246828,120],[2026947628,180],[2045696428,120]],[[-1577923200,110],[-1441158581,120],[-1247536771,180],[-899780400,120],[-857257171,60],[-844556371,120],[-828226771,60],[-812501971,120],[-804650371,180],[354920400,240],[370728014,180],[386456400,240],[402264014,180],[417992400,240],[433800014,180],[449614800,240],[465346814,180],[481071614,240],[496796414,180],[512521214,240],[528246014,180],[543970814,240],[559695614,180],[575420414,240],[591145214,180],[606870014,240],[622594814,180],[686102400,120],[701827200,180],[717552000,120],[733276800,180],[749001600,120],[764726400,180],[780451200,120],[796176000,180],[811900800,120],[828230400,180],[846374400,120],[859680000,180],[877824000,120],[891129600,180],[909273600,120],[922579200,180],[941328000,120],[954028800,180],[972777600,120],[985478400,180],[1004227200,120],[1017532800,180],[1035676800,120],[1048982400,180],[1067126400,120],[1080432000,180],[1099180800,120],[1111881600,180],[1130630400,120],[1143331200,180],[1162080000,120],[1174780800,180],[1193529600,120],[1206835200,180],[1224979200,120],[1238284800,180],[1256428800,120],[1269734400,180],[1288483200,120],[1301184000,180]],[[-1577923200,180],[-1542427185,240],[-1539493171,300],[-1525323571,240],[-1522727985,180],[-1491188400,120],[-1247536771,180],[354920400,240],[370728014,180],[386456400,240],[402264014,180],[417992400,240],[433800014,180],[449614800,240],[465346814,180],[481071614,240],[496796414,180],[512521214,240],[528246014,180],[543970814,240],[559695614,180],[575420414,240],[591145214,180],[606870014,240],[622594814,180],[638319614,240],[654649214,180],[686102400,120],[695779200,180],[701823614,240],[717548414,180],[733273214,240],[748998014,180],[764722814,240],[780447614,180],[796172414,240],[811897214,180],[828226814,240],[846370814,180],[859676414,240],[877820414,180],[891126014,240],[909270014,180],[922575614,240],[941324414,180],[954025214,240],[972774014,180],[985474814,240],[1004223614,180],[1017529214,240],[1035673214,180],[1048978814,240],[1067122814,180],[1080428414,240],[1099177214,180],[1111878014,240],[1130626814,180],[1143327614,240],[1162076414,180],[1174777214,240],[1193526014,180],[1206831614,240],[1224975614,180],[1238281214,240],[1256425214,180],[1269730814,240],[1288479614,180],[1301180414,240],[1414274428,180]],[[-1577923200,96],[-1377308179,120],[-928029571,180],[-899521200,120],[-857257171,60],[-844556371,120],[-828226771,60],[-812501971,120],[-796777171,60],[-795833985,180],[354920400,240],[370728014,180],[386456400,240],[402264014,180],[417992400,240],[433800014,180],[449614800,240],[465346814,180],[481071614,240],[496796414,180],[512521214,240],[528246014,180],[543970814,240],[559695614,180],[575420414,240],[591145214,180],[622598400,120],[638323200,180],[654652800,120],[670377600,180],[686102400,120],[701827200,180],[717552000,120],[733276800,180],[749001600,120],[764726400,180],[780451200,120],[796176000,180],[811900800,120],[828230400,180],[843955200,120],[859683628,180],[877827628,120],[891133228,180],[909277228,120],[922582828,180],[941331628,120],[985482028,180],[1004230828,120],[1017536428,180],[1035680428,120],[1048986028,180],[1067130028,120],[1080435628,180],[1099184428,120],[1111885228,180],[1130634028,120],[1143334828,180],[1162083628,120],[1174784428,180],[1193533228,120],[1206838828,180],[1224982828,120],[1238288428,180],[1256432428,120],[1269738028,180],[1288486828,120],[1301187628,180],[1319936428,120],[1332637228,180],[1351386028,120],[1364691628,180],[1382835628,120],[1396141228,180],[1414285228,120],[1427590828,180],[1445734828,120],[1459040428,180],[1477789228,120],[1490490028,180],[1509238828,120],[1521939628,180],[1540688428,120],[1553994028,180],[1572138028,120],[1585443628,180],[1603587628,120],[1616893228,180],[1635642028,120],[1648342828,180],[1667091628,120],[1679792428,180],[1698541228,120],[1711846828,180],[1729990828,120],[1743296428,180],[1761440428,120],[1774746028,180],[1792890028,120],[1806195628,180],[1824944428,120],[1837645228,180],[1856394028,120],[1869094828,180],[1887843628,120],[1901149228,180],[1919293228,120],[1932598828,180],[1950742828,120],[1964048428,180],[1982797228,120],[1995498028,180],[2014246828,120],[2026947628,180],[2045696428,120]],[[-1577923200,180],[-1247540400,240],[354916814,300],[370724428,240],[386452814,300],[402260428,240],[417988814,300],[433796428,240],[449611214,300],[465343228,240],[481068028,300],[496792828,240],[512517628,300],[528242428,240],[543967228,300],[559692028,240],[575416828,300],[591141628,240],[622594814,180],[638319614,240],[654649214,180],[687916800,240],[701820028,300],[717544828,240],[733269628,300],[748994428,240],[764719228,300],[780444028,240],[796168828,300],[811893628,240],[828223228,300],[846367228,240],[859672828,300],[877816828,240],[891122428,300],[909266428,240],[922572028,300],[941320828,240],[954021628,300],[972770428,240],[985471228,300],[1004220028,240],[1017525628,300],[1035669628,240],[1048975228,300],[1067119228,240],[1080424828,300],[1099173628,240],[1111874428,300],[1130623228,240],[1143324028,300],[1162072828,240],[1174773628,300],[1193522428,240],[1206828028,300],[1224972028,240],[1238277628,300],[1256421628,240],[1288479614,180],[1301180414,240]],[[-1577923200,180],[-1247540400,240],[354916814,300],[370724428,240],[386452814,300],[402260428,240],[417988814,300],[433796428,240],[449611214,300],[465343228,240],[481068028,300],[496792828,240],[512517628,300],[528242428,240],[543967228,300],[559692028,240],[591145214,180],[606870014,240],[622594814,180],[638319614,240],[654649214,180],[670374014,240],[717548414,180],[733273214,240],[748998014,180],[764722814,240],[780447614,180],[796172414,240],[811897214,180],[828226814,240],[846370814,180],[859676414,240],[877820414,180],[891126014,240],[909270014,180],[922575614,240],[941324414,180],[954025214,240],[972774014,180],[985474814,240],[1004223614,180],[1017529214,240],[1035673214,180],[1048978814,240],[1067122814,180],[1080428414,240],[1099177214,180],[1111878014,240],[1130626814,180],[1143327614,240],[1162076414,180],[1174777214,240],[1193526014,180],[1206831614,240],[1224975614,180],[1238281214,240],[1256425214,180],[1269730814,240],[1288479614,180],[1301180414,240],[1414274428,180],[1480806014,240]],[[-1577923200,99],[-1535938706,120],[-927943171,180],[-892954800,120],[-857257171,60],[-844556371,120],[-828226771,60],[-812501971,120],[-797651971,180],[354920400,240],[370728014,180],[386456400,240],[402264014,180],[417992400,240],[433800014,180],[449614800,240],[465346814,180],[481071614,240],[496796414,180],[512521214,240],[528246014,180],[543970814,240],[559695614,180],[575420414,240],[591145214,180],[622598400,120],[638323200,180],[654652800,120],[670377600,180],[686102400,120],[701827200,180],[717552000,120],[733276800,180],[749001600,120],[764726400,180],[780451200,120],[796176000,180],[811900800,120],[828230400,180],[846374400,120],[859680000,180],[877824000,120],[891129600,180],[909277228,120],[922582828,180],[941331628,120],[1017536428,180],[1035680428,120],[1048986028,180],[1067130028,120],[1080435628,180],[1099184428,120],[1111885228,180],[1130634028,120],[1143334828,180],[1162083628,120],[1174784428,180],[1193533228,120],[1206838828,180],[1224982828,120],[1238288428,180],[1256432428,120],[1269738028,180],[1288486828,120],[1301187628,180],[1319936428,120],[1332637228,180],[1351386028,120],[1364691628,180],[1382835628,120],[1396141228,180],[1414285228,120],[1427590828,180],[1445734828,120],[1459040428,180],[1477789228,120],[1490490028,180],[1509238828,120],[1521939628,180],[1540688428,120],[1553994028,180],[1572138028,120],[1585443628,180],[1603587628,120],[1616893228,180],[1635642028,120],[1648342828,180],[1667091628,120],[1679792428,180],[1698541228,120],[1711846828,180],[1729990828,120],[1743296428,180],[1761440428,120],[1774746028,180],[1792890028,120],[1806195628,180],[1824944428,120],[1837645228,180],[1856394028,120],[1869094828,180],[1887843628,120],[1901149228,180],[1919293228,120],[1932598828,180],[1950742828,120],[1964048428,180],[1982797228,120],[1995498028,180],[2014246828,120],[2026947628,180],[2045696428,120]],[[-1577923200,180],[-1247540400,240],[354916814,300],[370724428,240],[386452814,300],[402260428,240],[417988814,300],[433796428,240],[449611214,300],[465343228,240],[481068028,300],[496792828,240],[512517628,300],[528242428,240],[543967228,300],[559692028,240],[575416828,300],[591141628,240],[622594814,180],[638319614,240],[654649214,180],[686102400,120],[695779200,180],[701823614,240],[717548414,180],[733273214,240],[748998014,180],[764722814,240],[780447614,180],[796172414,240],[811897214,180],[828226814,240],[846370814,180],[859676414,240],[877820414,180],[891126014,240],[909270014,180],[922575614,240],[941324414,180],[954025214,240],[972774014,180],[985474814,240],[1004223614,180],[1017529214,240],[1035673214,180],[1048978814,240],[1067122814,180],[1080428414,240],[1099177214,180],[1111878014,240],[1130626814,180],[1143327614,240],[1162076414,180],[1174777214,240],[1193526014,180],[1206831614,240],[1224975614,180],[1238281214,240],[1256425214,180],[1269730814,240],[1288479614,180],[1301180414,240],[1414274428,180],[1459033214,240]],[[-1577923200,60],[-1561251585,120],[-1553565571,60],[-928198785,180],[-900126000,120],[-857257171,60],[-844556371,120],[-828226771,60],[-812501971,120],[-802144771,180],[354920400,240],[370728014,180],[386456400,240],[402264014,180],[417992400,240],[433800014,180],[449614800,240],[465346814,180],[481071614,240],[496796414,180],[512521214,240],[528246014,180],[543970814,240],[559695614,180],[575420414,240],[591145214,180],[622598400,120],[638323200,180],[654652800,120],[670377600,180],[686102400,120],[701827200,180],[717552000,120],[733276800,180],[749001600,120],[764726400,180],[780451200,120],[796176000,180],[811900800,120],[828230400,180],[846374400,120],[859680000,180],[877824000,120],[909277228,60],[922582828,120],[1048986028,180],[1067130028,120],[1080435628,180],[1099184428,120],[1111885228,180],[1130634028,120],[1143334828,180],[1162083628,120],[1174784428,180],[1193533228,120],[1206838828,180],[1224982828,120],[1238288428,180],[1256432428,120],[1269738028,180],[1288486828,120],[1301187628,180],[1319936428,120],[1332637228,180],[1351386028,120],[1364691628,180],[1382835628,120],[1396141228,180],[1414285228,120],[1427590828,180],[1445734828,120],[1459040428,180],[1477789228,120],[1490490028,180],[1509238828,120],[1521939628,180],[1540688428,120],[1553994028,180],[1572138028,120],[1585443628,180],[1603587628,120],[1616893228,180],[1635642028,120],[1648342828,180],[1667091628,120],[1679792428,180],[1698541228,120],[1711846828,180],[1729990828,120],[1743296428,180],[1761440428,120],[1774746028,180],[1792890028,120],[1806195628,180],[1824944428,120],[1837645228,180],[1856394028,120],[1869094828,180],[1887843628,120],[1901149228,180],[1919293228,120],[1932598828,180],[1950742828,120],[1964048428,180],[1982797228,120],[1995498028,180],[2014246828,120],[2026947628,180],[2045696428,120]],[[-1577923200,177],[-1577761031,180],[-1247540400,240],[354916814,300],[370724428,240],[386452814,300],[402260428,240],[417988814,300],[433796428,240],[449611214,300],[465343228,240],[481068028,300],[496792828,240],[512517628,300],[528242428,240],[543967228,300],[559692028,240],[591145214,180],[606870014,240],[622594814,180],[638319614,240],[654649214,180],[670374014,240],[717548414,180],[733273214,240],[748998014,180],[764722814,240],[780447614,180],[796172414,240],[811897214,180],[828226814,240],[846370814,180],[859676414,240],[877820414,180],[891126014,240],[909270014,180],[922575614,240],[941324414,180],[954025214,240],[972774014,180],[985474814,240],[1004223614,180],[1017529214,240],[1035673214,180],[1048978814,240],[1067122814,180],[1080428414,240],[1099177214,180],[1111878014,240],[1130626814,180],[1143327614,240],[1162076414,180],[1174777214,240],[1193526014,180],[1206831614,240],[1224975614,180],[1238281214,240],[1256425214,180],[1269730814,240],[1288479614,180],[1301180414,240],[1414274428,180],[1540681214,240],[1609020028,180]]],"cities":[["Москва",55.7558,37.6173,28],["Санкт-Петербург",59.9391,30.3159,28],["Калининград",54.7104,20.4522,24],["Мурманск",68.9707,33.0749,28],["Архангельск",64.5393,40.517,28],["Ярославль",57.6261,39.8845,28],["Тверь",56.8587,35.9176,28],["Тула",54.1961,37.6182,28],["Рязань",54.6269,39.6916,28],["Владимир",56.129,40.407,28],["Иваново",56.9999,40.9739,28],["Белгород",50.5952,36.5873,28],["Курск",51.7304,36.1926,28],["Липецк",52.6088,39.5992,28],["Воронеж",51.672,39.1843,28],["Ростов-на-Дону",47.2225,39.7188,28],["Краснодар",45.0355,38.9753,28],["Сочи",43.5855,39.7231,28],["Ставрополь",45.0445,41.969,28],["Махачкала",42.9764,47.5024,28],["Владикавказ",43.0367,44.6678,28],["Грозный",43.3181,45.6986,28],["Волгоград",48.708,44.5133,35],["Саратов",51.5336,46.0343,31],["Пенза",53.1959,45.0183,28],["Саранск",54.1838,45.1749,28],["Чебоксары",56.1439,47.2489,28],["Йошкар-Ола",56.6388,47.8908,28],["Нижний Новгород",56.3269,44.0059,28],["Казань",55.7963,49.1064,28],["Киров",58.6035,49.6679,25],["Ульяновск",54.3142,48.4031,33],["Астрахань",46.3479,48.0336,22],["Самара",53.1959,50.1008,30],["Тольятти",53.5078,49.4204,30],["Ижевск",56.8526,53.2115,30],["Уфа",54.7351,55.9587,20],["Пермь",58.0105,56.2294,20],["Оренбург",51.7682,55.0969,20],["Екатеринбург",56.8389,60.6057,20],["Челябинск",55.1644,61.4368,20],["Курган",55.4408,65.3411,20],["Тюмень",57.153,65.5343,20],["Сургут",61.254,73.3962,20],["Нижневартовск",60.9397,76.5697,20],["Омск",54.9885,73.3242,13],["Новосибирск",55.0084,82.9357,12],["Барнаул",53.348,83.7798,3],["Томск",56.4846,84.9476,17],["Кемерово",55.3547,86.0873,11],["Новокузнецк",53.7557,87.1099,11],["Красноярск",56.0153,92.8932,9],["Абакан",53.7156,91.4292,9],["Кызыл",51.7191,94.4378,9],["Норильск",69.3558,88.1893,9],["Иркутск",52.287,104.305,7],["Братск",56.1325,101.6142,7],["Улан-Удэ",51.8335,107.5841,7],["Чита",52.034,113.4994,5],["Якутск",62.0355,129.6755,19],["Благовещенск",50.2907,127.5272,19],["Хабаровск",48.4827,135.0838,18],["Комсомольск-на-Амуре",50.5503,137.0079,18],["Владивосток",43.1155,131.8855,18],["Южно-Сахалинск",46.9591,142.738,14],["Магадан",59.5638,150.8035,10],["Петропавловск-Камчатский",53.037,158.6559,8],["Минск",53.9023,27.5619,27],["Киев",50.4501,30.5234,26],["Харьков",49.9935,36.2304,26],["Одесса",46.4825,30.7233,26],["Львов",49.8397,24.0297,26],["Кишинёв",47.0105,28.8638,23],["Алматы",43.238,76.8829,0],["Астана",51.1694,71.4491,0],["Караганда",49.8047,73.1094,0],["Ташкент",41.2995,69.2401,15],["Бишкек",42.8746,74.5698,4],["Душанбе",38.5598,68.787,6],["Ашхабад",37.9601,58.3261,1],["Ереван",40.1792,44.4991,21],["Тбилиси",41.7151,44.8271,16],["Баку",40.4093,49.8671,2],["Рига",56.9496,24.1052,29],["Вильнюс",54.6872,25.2797,34],["Таллин",59.437,24.7536,32]]};              // {zones:[...], trans:[[unixSec,offsetMin],...], cities:[...]}
+  var CITIES=TZ.cities;               // [название, широта, долгота, индекс зоны]
+  var SIGNS=["Овен","Телец","Близнецы","Рак","Лев","Дева","Весы","Скорпион","Стрелец","Козерог","Водолей","Рыбы"];
+  var sel=box.querySelector('.ascc'),dIn=box.querySelector('.ascd'),tIn=box.querySelector('.asct'),
+      zIn=box.querySelector('.ascz'),out=box.querySelector('.ascout');
+  CITIES.forEach(function(c,i){
+    var o=document.createElement('option');o.value=String(i);o.textContent=c[0];sel.appendChild(o);
+  });
+  sel.value="0";
+
+  function offsetAtUTC(zoneIdx,sec){
+    var t=TZ.trans[zoneIdx],lo=0,hi=t.length-1;
+    if(sec<=t[0][0])return t[0][1];
+    while(lo<hi){var mid=(lo+hi+1)>>1;if(t[mid][0]<=sec)lo=mid;else hi=mid-1;}
+    return t[lo][1];
+  }
+  // На входе время по часам на стене. Берём смещение прикидкой, пересчитываем в UTC и уточняем.
+  function offsetForLocal(zoneIdx,y,mo,d,h,mi){
+    var wall=Date.UTC(y,mo-1,d,h,mi)/1000;
+    var o=offsetAtUTC(zoneIdx,wall);
+    return offsetAtUTC(zoneIdx,wall-o*60)/60;
+  }
+  function julian(y,mo,d,h,mi){
+    if(mo<=2){y-=1;mo+=12;}
+    var a=Math.floor(y/100),b=2-a+Math.floor(a/4);
+    return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(mo+1))+d+(h+mi/60)/24+b-1524.5;
+  }
+  // Асцендент: точка эклиптики, восходящая над горизонтом. Формула сверена численным поиском
+  // точки пересечения эклиптики с горизонтом, расхождение 0.0000 градуса на четырёх широтах.
+  function ascendant(jd,lat,lon){
+    var T=(jd-2451545)/36525;
+    var gmst=(280.46061837+360.98564736629*(jd-2451545)+0.000387933*T*T-T*T*T/38710000)%360;
+    var lst=((gmst+lon)%360+360)%360;
+    var eps=(23.4392911-0.0130042*T)*Math.PI/180;
+    var th=lst*Math.PI/180,ph=lat*Math.PI/180;
+    var a=Math.atan2(Math.cos(th),-(Math.sin(th)*Math.cos(eps)+Math.tan(ph)*Math.sin(eps)))*180/Math.PI;
+    return (a%360+360)%360;
+  }
+  function show(html){out.hidden=false;out.innerHTML=html;}
+  function fmtOff(o){
+    var s=o<0?"-":"+",a=Math.abs(o),hh=Math.floor(a),mm=Math.round((a-hh)*60);
+    return "UTC"+s+hh+(mm?":"+(mm<10?"0":"")+mm:"");
+  }
+
+  box.querySelector('.ascgo').addEventListener('click',function(){
+    var dv=dIn.value,tv=tIn.value;
+    if(!dv){show('<p class="big">Нужна дата рождения</p><p class="why">Без даты расчёта нет.</p>');return;}
+    if(!tv){show('<p class="big">Нужно время рождения</p><p class="why">Асцендент меняется примерно каждые два часа и за сутки проходит все двенадцать знаков. Без времени его не посчитает никто, включая астролога. Время стоит в свидетельстве о рождении и в выписке из роддома. Если найти его негде, читай ниже блок про неизвестное время.</p>');return;}
+    var p=dv.split('-'),y=+p[0],mo=+p[1],d=+p[2],q=tv.split(':'),h=+q[0],mi=+q[1];
+    var city=CITIES[+sel.value];
+    var off=parseFloat(zIn.value);
+    if(isNaN(off))off=offsetForLocal(city[3],y,mo,d,h,mi);
+    var lam=ascendant(julian(y,mo,d,h-off,mi),city[1],city[2]);
+    var si=Math.floor(lam/30),deg=lam-30*si,mn=Math.round((deg-Math.floor(deg))*60);
+    if(mn===60){mn=0;deg+=1;}
+    var name=SIGNS[si],hit=null;
+    box.querySelectorAll('.asctab tbody tr').forEach(function(r){
+      var on=r.getAttribute('data-sign')===name;
+      r.classList.toggle('hit',on);if(on)hit=r;
+    });
+    show('<p class="big">Твой асцендент: '+name+', '+Math.floor(deg)+'°'+(mn<10?'0':'')+mn+"'"+'</p>'+
+         '<p class="why">Считал по данным: '+city[0]+', '+p[2]+'.'+p[1]+'.'+p[0]+', '+tv+
+         ', часовой пояс '+fmtOff(off)+'. Твоя строка в таблице ниже подсвечена.</p>'+
+         '<p class="why">Пояс взят из международной базы часовых поясов на твою дату, декретное и летнее время там уже учтены. Знаешь точно, что в твоём городе тогда было иначе, поставь свой пояс в поле рядом и посчитай заново.</p>');
+    if(hit)hit.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  function syncZone(){
+    var dv=dIn.value,tv=tIn.value||"12:00";
+    if(!dv){zIn.value='';return;}
+    var p=dv.split('-'),q=tv.split(':');
+    zIn.value=offsetForLocal(CITIES[+sel.value][3],+p[0],+p[1],+p[2],+q[0],+q[1]);
+  }
+  sel.addEventListener('change',syncZone);
+  dIn.addEventListener('change',syncZone);
+  tIn.addEventListener('change',syncZone);
+})();
+</script>
+
+<script>
+(function(){
+  var box=document.querySelector('.sunsign');if(!box)return;
+  var SIGNS=["Овен","Телец","Близнецы","Рак","Лев","Дева","Весы","Скорпион","Стрелец","Козерог","Водолей","Рыбы"];
+  // Границы знаков как месяц-день, в календарном порядке начиная с 20 января (Водолей). Сверка
+  // идёт по месяцу и дню напрямую, не по дню года: день года считает от 1 января и в
+  // високосный год сдвигается на сутки начиная с марта, из-за чего дата на самой границе знака
+  // (напр. 20.03) в високосный год ошибочно попадала бы в следующий знак.
+  var CUTS=[[1,20,10],[2,19,11],[3,21,0],[4,20,1],[5,21,2],[6,21,3],[7,23,4],[8,23,5],[9,23,6],[10,23,7],[11,22,8],[12,22,9]];
+  var dIn=box.querySelector('.ssd'),out=box.querySelector('.ssout'),table=document.querySelector('.asctab');
+  function signIndex(mo,d){
+    var idx=9; // до 20 января это ещё хвост Козерога, зашедшего 22 декабря
+    for(var i=0;i<CUTS.length;i++){var c=CUTS[i];if(mo>c[0]||(mo===c[0]&&d>=c[1]))idx=c[2];}
+    return idx;
+  }
+  box.querySelector('.ssgo').addEventListener('click',function(){
+    var dv=dIn.value;
+    if(!dv){out.hidden=false;out.innerHTML='<p class="big">Нужна дата рождения</p><p class="why">Без даты расчёта нет.</p>';return;}
+    var p=dv.split('-'),name=SIGNS[signIndex(+p[1],+p[2])],hit=null;
+    if(table){
+      table.querySelectorAll('tbody tr').forEach(function(r){
+        var on=r.getAttribute('data-sign')===name;
+        r.classList.toggle('hit',on);if(on)hit=r;
+      });
+    }
+    out.hidden=false;
+    out.innerHTML='<p class="big">Твой знак: '+name+'</p><p class="why">Посчитан по дате рождения. Твоя строка в таблице ниже подсвечена.</p>';
+    if(hit)hit.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+})();
+</script>
+</body></html>
