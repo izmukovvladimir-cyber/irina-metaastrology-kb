@@ -180,6 +180,8 @@ h1{font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing
 .ft-links{display:flex;gap:20px;font-size:13.5px;color:var(--text);opacity:.82}
 .ft-links a:hover{opacity:1}
 .ft-bot{max-width:1340px;margin:20px auto 0;padding:16px 44px 0;border-top:1px solid var(--hair);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* реквизиты продавца: их требует платёжный провайдер, поэтому строка отдельная и всегда видимая */
+.ft-legal{max-width:1340px;margin:8px auto 0;padding:0 44px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);opacity:.85}
 /* ============ responsive ============ */
 @media(max-width:900px){
 .hd-in,.wrap,.ft-in,.ft-bot{padding-left:20px;padding-right:20px}
@@ -335,7 +337,7 @@ h1{font-size:28px}
 </article>
 <aside class="toc"><div class="h">На странице</div><a href="#sec-0">Шаг 1. Замер: ты узкое место или нет</a><a href="#sec-1">Шаг 2. Десятый дом: какая роль твоя</a><a href="#sec-2">Шаг 3. Сатурн: три страха, которые держат в операционке</a><a href="#sec-3">Шаг 4. Передача роли за 30 дней</a><a href="#sec-4">Промпт: карта функций и план передачи</a><a href="#sec-5">Что таблица не покажет</a></aside>
 </main>
-<footer class="ft"><div class="ft-in"><a class="logo" href="/">Ирина<i class="sq"></i>Терещенко</a><span class="sp"></span><nav class="ft-links"><a href="/">Все материалы</a><a href="/about/">Обо мне</a><a href="https://t.me/tereshchenkoirina">Личная консультация</a></nav></div><div class="ft-bot">Ирина Терещенко · @irinatereshchenko_metaastrolog · @tereshchenkoirina</div></footer>
+<footer class="ft"><div class="ft-in"><a class="logo" href="/">Ирина<i class="sq"></i>Терещенко</a><span class="sp"></span><nav class="ft-links"><a href="/">Все материалы</a><a href="/about/">Обо мне</a><a href="https://t.me/tereshchenkoirina">Личная консультация</a></nav></div><div class="ft-bot">Ирина Терещенко · @irinatereshchenko_metaastrolog · @tereshchenkoirina</div><div class="ft-legal">ИП Воронин Евгений Викторович · ИНН 542405485902</div></footer>
 <script>
 document.querySelectorAll('.copy').forEach(function(b){
   b.addEventListener('click',function(){
