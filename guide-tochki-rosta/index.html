@@ -166,6 +166,8 @@ h1{font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing
 /* книжная плашка: обложка слева, текст и кнопка справа. Врезка внутри чтения, поэтому
    держится тише карточек: без тени, рамка обычная, ширина обложки фиксированная, чтобы
    строка описания не прыгала от размера картинки */
+.leadimg{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--card-border);margin:20px 0 6px}
+.leadimg+.cap{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 20px}
 .promo{display:flex;gap:18px;align-items:flex-start;background:var(--surface);border:1px solid var(--card-border);border-radius:12px;padding:16px 18px;margin:22px 0}
 .promo .cover{flex:0 0 104px;width:104px;border-radius:8px;display:block;border:1px solid var(--card-border)}
 .promo .pb{min-width:0}
