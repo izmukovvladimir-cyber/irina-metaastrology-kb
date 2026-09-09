@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Диагностика бизнеса: где в вашей компании скрыты утечки прибыли</title>
+<meta name="description" content="Четыре вопроса о команде, деньгах и решениях. Диагноз системы и предложение о корпоративной работе от Ирины Терещенко.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+ :root{
+  --bg:#0A1224; --bg2:#0e1830; --card:#111c36; --line:#22304f;
+  --txt:#F3EEE1; --mut:#aab6cc; --acc:#CCFF00; --steel:#D7DBE2; --ink:#0A1224;
+ }
+ *{box-sizing:border-box;}
+ html{scroll-behavior:smooth;}
+ body{margin:0;background:var(--bg);color:var(--txt);
+   font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+ .wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+ header{padding:54px 0 40px;border-bottom:1px solid var(--line);}
+ .kick{color:var(--acc);font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:14px;}
+ h1{font-size:34px;line-height:1.15;margin:0 0 16px;font-weight:800;letter-spacing:-.5px;}
+ .lead{color:var(--mut);font-size:18px;margin:0 0 26px;}
+ ul.plain{list-style:none;padding:0;margin:0 0 28px;}
+ ul.plain li{padding-left:26px;position:relative;margin:9px 0;}
+ ul.plain li:before{content:"";position:absolute;left:6px;top:11px;width:7px;height:7px;
+   background:var(--acc);transform:rotate(45deg);}
+ .btn{display:inline-block;background:var(--acc);color:var(--ink);font-weight:800;font-size:16px;
+   padding:16px 30px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;
+   letter-spacing:.3px;}
+ .btn:active{transform:translateY(1px);}
+ .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--steel);}
+ section{padding:40px 0;border-bottom:1px solid var(--line);}
+ h2{font-size:24px;margin:0 0 8px;letter-spacing:-.3px;}
+ .step{color:var(--acc);font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+ .q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:18px 0;}
+ .q h3{font-size:18px;margin:0 0 14px;}
+ .opt{display:block;width:100%;text-align:left;background:var(--bg2);color:var(--txt);
+   border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:9px 0;cursor:pointer;
+   font:inherit;font-size:15.5px;line-height:1.45;transition:border-color .15s,background .15s;}
+ .opt:hover{border-color:var(--steel);}
+ .opt.on{border-color:var(--acc);background:#16234180;}
+ .bar{height:4px;background:var(--line);border-radius:3px;overflow:hidden;margin:22px 0 6px;}
+ .bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .25s;}
+ .barlab{color:var(--mut);font-size:13px;}
+ .hidden{display:none;}
+ .res{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--acc);
+   border-radius:14px;padding:24px;margin:20px 0;}
+ .res h3{font-size:22px;margin:0 0 12px;}
+ .res .tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1.4px;
+   text-transform:uppercase;color:var(--acc);margin-bottom:12px;}
+ .block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:16px 0;}
+ .block h4{margin:0 0 8px;font-size:17px;}
+ .block p{margin:0;color:var(--mut);font-size:15.5px;}
+ .fine{color:var(--mut);font-size:14px;}
+ footer{padding:36px 0 60px;color:var(--mut);font-size:14px;}
+ .field{margin:14px 0;}
+ .field label{display:block;font-size:14px;color:var(--mut);margin-bottom:6px;}
+ select{width:100%;background:var(--bg2);color:var(--txt);border:1px solid var(--line);
+   border-radius:10px;padding:13px 14px;font:inherit;font-size:15.5px;}
+ @media (max-width:560px){ h1{font-size:27px;} body{font-size:16px;} .wrap{padding:0 16px;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kick">Ирина Терещенко · для собственников бизнеса</div>
+    <h1>Диагностика бизнеса: где в вашей компании скрыты утечки прибыли</h1>
+    <p class="lead">Четыре вопроса, три минуты. В конце вы получите диагноз своей системы по трём точкам: команда, деньги, ваша собственная роль.</p>
+    <ul class="plain">
+      <li>Где команда буксует и почему KPI стоят на месте</li>
+      <li>Куда уходит прибыль при растущем обороте</li>
+      <li>Что закрывает эти вопросы за тридцать дней</li>
+    </ul>
+    <button class="btn" onclick="start()">Начать диагностику</button>
+  </div>
+</header>
+
+<section id="quiz" class="hidden">
+  <div class="wrap">
+    <div class="step">Диагностика</div>
+    <h2>Четыре вопроса</h2>
+    <p class="fine">Выбирайте вариант, который ближе к сегодняшнему дню, без идеальной картинки.</p>
+
+    <div class="bar"><i id="bar"></i></div>
+    <div class="barlab" id="barlab">Вопрос 1 из 4</div>
+
+    <div class="q" data-q="0">
+      <h3>1. Как у вас обстоят дела с топ-командой?</h3>
+      <button class="opt" data-v="1">Всё держится на мне. Стоит уехать в отпуск, операционка встаёт. Команда не принимает решений.</button>
+      <button class="opt" data-v="2">Текучка и выгорание ключевых людей. Нанимаем сильных по резюме, через два-три месяца человек сдувается или конфликтует.</button>
+      <button class="opt" data-v="3">Команда работает, но ключевые фигуры сидят не на своих местах и тянут показатели вниз.</button>
+    </div>
+
+    <div class="q hidden" data-q="1">
+      <h3>2. Что происходит с финансовыми показателями?</h3>
+      <button class="opt" data-v="1">Хаос. Доход нестабильный, крупные контракты срываются в последний момент, регулярно возникают кассовые разрывы.</button>
+      <button class="opt" data-v="2">Обороты большие, чистая прибыль стоит на месте. Деньги уходят на налоги, форс-мажоры и незапланированные расходы.</button>
+      <button class="opt" data-v="3">Бизнес вырос, но я упёрся в потолок. Понимаю, что надо масштабироваться, и не вижу, как и когда.</button>
+    </div>
+
+    <div class="q hidden" data-q="2">
+      <h3>3. Как вы принимаете стратегические решения?</h3>
+      <button class="opt" data-v="1">Интуитивно, когда чувствую, что пора. Часто ошибаюсь и теряю деньги.</button>
+      <button class="opt" data-v="2">Планирую по классической схеме, маржинальность запусков всё равно не растёт.</button>
+      <button class="opt" data-v="3">Система есть, но в правильности тайминга я не уверен. Хочу снизить риски.</button>
+    </div>
+
+    <div class="q hidden" data-q="3">
+      <h3>4. Какова ваша личная роль в бизнесе сейчас?</h3>
+      <button class="opt" data-v="1">Пожарный. День уходит на чужие проблемы и форс-мажоры, свободного времени нет.</button>
+      <button class="opt" data-v="2">Ремесленник. Боюсь делегировать, проверяю всё сам, работаю на износ.</button>
+      <button class="opt" data-v="3">Стратег без ресурсов. Идей много, времени и структуры на внедрение нет.</button>
+    </div>
+  </div>
+</section>
+
+<section id="result" class="hidden">
+  <div class="wrap">
+    <div class="step">Ваш диагноз</div>
+    <div class="res" id="resbox"></div>
+
+    <h2>Что с этим делают</h2>
+    <p class="fine">Корпоративный МЕТА-аудит компании. Тридцать дней, три блока работы.</p>
+
+    <div class="block">
+      <h4>1. Астро-HR, кадровая безопасность</h4>
+      <p>Сквозной аудит топ-команды до десяти ключевых фигур. Видно, кто из них генерирует прибыль и кто тормозит процессы. На выходе карта перестановок: каждый человек встаёт на место, которое совпадает с его природой.</p>
+    </div>
+    <div class="block">
+      <h4>2. Астро-тайминг, стратегическое планирование</h4>
+      <p>Годовой календарь окон: когда масштабироваться, когда инвестировать, когда держать паузу. Точные даты под подписание контрактов, запуски и найм.</p>
+    </div>
+    <div class="block">
+      <h4>3. Стратегическая сессия с акционерами</h4>
+      <p>Двухчасовая встреча с собственником и ключевыми партнёрами. Ирина лично показывает отчёт, отвечает на вопросы и помогает утвердить план внедрения.</p>
+    </div>
+
+    <div class="block">
+      <h4>Формат</h4>
+      <p>Срок тридцать календарных дней. Ваше личное время в проекте два-три часа, это стратегическая сессия. Остальную работу ведёт Ирина с кураторами. В квартал берётся не больше трёх компаний.</p>
+    </div>
+
+    <h2>Следующий шаг</h2>
+    <p class="fine">Ответьте на два вопроса, и я открою кнопку для сообщения Ирине. Ваши ответы подставятся в текст, чтобы она сразу видела вашу ситуацию.</p>
+
+    <div class="field">
+      <label for="turnover">Годовой оборот компании</label>
+      <select id="turnover">
+        <option value="">Выберите</option>
+        <option>до 50 млн ₽</option>
+        <option>50-100 млн ₽</option>
+        <option>100-500 млн ₽</option>
+        <option>более 500 млн ₽</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="pain">Какая задача сейчас самая острая</label>
+      <select id="pain">
+        <option value="">Выберите</option>
+        <option>Кадровый кризис, команда буксует</option>
+        <option>Финансовые разрывы, нестабильная прибыль</option>
+        <option>Стратегический тупик, непонятно, куда расти</option>
+        <option>Хочу застраховать бизнес от рисков</option>
+      </select>
+    </div>
+
+    <p style="margin-top:22px"><a class="btn" id="tg" href="#">Написать Ирине</a></p>
+    <p class="fine">Кнопка откроет Telegram с готовым текстом. Условия и стоимость Ирина назовёт вам лично.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Ирина Терещенко, метаастролог и предприниматель. Резидент бизнес-клубов, автор книг, эксперт с четырнадцатилетней практикой.
+  </div>
+</footer>
+
+<script>
+(function(){
+  var score = 0, step = 0, total = 4;
+  var qs = document.querySelectorAll('.q');
+
+  window.start = function(){
+    document.getElementById('quiz').classList.remove('hidden');
+    document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
+  };
+
+  function paint(){
+    document.getElementById('bar').style.width = Math.round(step/total*100) + '%';
+    document.getElementById('barlab').textContent = step < total
+      ? 'Вопрос ' + (step+1) + ' из ' + total
+      : 'Готово';
+  }
+
+  qs.forEach(function(q){
+    q.querySelectorAll('.opt').forEach(function(b){
+      b.addEventListener('click', function(){
+        q.querySelectorAll('.opt').forEach(function(o){ o.classList.remove('on'); });
+        b.classList.add('on');
+        score += parseInt(b.dataset.v, 10);
+        step += 1;
+        paint();
+        setTimeout(function(){
+          q.classList.add('hidden');
+          if (step < total) {
+            qs[step].classList.remove('hidden');
+            qs[step].scrollIntoView({behavior:'smooth', block:'center'});
+          } else {
+            show();
+          }
+        }, 180);
+      });
+    });
+  });
+
+  var RES = [
+    {min:4, max:6, tag:'Кризис структуры',
+     h:'Выгоревший лидер',
+     p:'Бизнес держится на вашем личном контроле. Вы тащите операционку, боитесь делегировать, а команда буксует, потому что у неё нет ясной структуры и зон ответственности. Пока вы заняты чужими задачами, стратегией не занимается никто.'},
+    {min:7, max:9, tag:'Кризис тайминга',
+     h:'Прибыль уходит незаметно',
+     p:'Деньги в компанию приходят, а на счету не задерживаются. Решения принимаются на ощущение момента, сделки заходят в неудачные периоды, отсюда разрывы и сорванные контракты. Вопрос тут в порядке и в сроках. Объём усилий вы и так даёте выше среднего.'},
+    {min:10, max:12, tag:'Кризис масштаба',
+     h:'Стеклянный потолок',
+     p:'Потенциал и идеи есть, система под них не собрана. Ключевые люди сидят не на своих местах, операционка съедает ваше время, вложения не дают ожидаемой отдачи. Рост упирается в конструкцию компании.'}
+  ];
+
+  function show(){
+    // Шкала: 4 вопроса по 1-3 балла, значит сумма лежит в 4..12. В исходной методичке
+    // стояли пороги 3-4, 5-6 и 7-8, они закрывают только часть шкалы, и сумма 9 или 12
+    // молча падала на первую ветку, то есть человек с тяжёлой ситуацией получал самый
+    // лёгкий диагноз. Пороги пересчитаны на полную шкалу, промах невозможен по построению.
+    var r = null;
+    for (var i=0;i<RES.length;i++){ if (score>=RES[i].min && score<=RES[i].max) r = RES[i]; }
+    if (!r) r = score < RES[0].min ? RES[0] : RES[RES.length-1];
+    document.getElementById('resbox').innerHTML =
+      '<div class="tag">' + r.tag + '</div><h3>' + r.h + '</h3><p>' + r.p + '</p>';
+    var sec = document.getElementById('result');
+    sec.classList.remove('hidden');
+    sec.scrollIntoView({behavior:'smooth'});
+    window.__diag = r.tag;
+  }
+
+  function link(){
+    var t = document.getElementById('turnover').value;
+    var p = document.getElementById('pain').value;
+    var msg = 'Ирина, здравствуйте. Прошёл диагностику на вашем сайте.';
+    if (window.__diag) msg += ' Результат: ' + window.__diag + '.';
+    if (t) msg += ' Оборот: ' + t + '.';
+    if (p) msg += ' Самая острая задача: ' + p + '.';
+    msg += ' Хочу обсудить корпоративную работу.';
+    document.getElementById('tg').href =
+      'https://t.me/tereshchenkoirina?text=' + encodeURIComponent(msg);
+  }
+  document.getElementById('turnover').addEventListener('change', link);
+  document.getElementById('pain').addEventListener('change', link);
+  link();
+})();
+</script>
+</body>
+</html>
