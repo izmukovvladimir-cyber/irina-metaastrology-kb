@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пробуждение. Курс Ирины Терещенко</title>
+<meta name="description" content="Личная консультация Ирины Терещенко по вашей карте и месячный курс «Пробуждение. Как выйти из матрицы ума»: 5 модулей, 21 урок. Старт 5 октября.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,800;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A1224; --bg2:#131d36; --ink:#F3EEE1; --body:#C6CAD4; --lime:#CCFF00; --steel:#D7DBE2;
+  --panel:rgba(19,29,54,.78); --line:rgba(150,160,180,.35); --light:#F5F2E9; --dark-ink:#0A1224;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--body);font:400 17px/1.6 'Onest',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+section{padding:72px 0;position:relative}
+.kicker{font:700 13px/1.2 'Onest';letter-spacing:.16em;text-transform:uppercase;color:var(--lime);margin-bottom:16px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;color:var(--ink);font-weight:800;line-height:1.08}
+h1{font-size:clamp(38px,7vw,68px)}
+h2{font-size:clamp(28px,4.6vw,44px);margin-bottom:24px}
+h3{font-size:22px;font-weight:600;margin-bottom:8px}
+em.a{font-style:normal;color:var(--lime)}
+p+p{margin-top:14px}
+.lead{font-size:19px;color:var(--ink);opacity:.92;max-width:680px}
+.btn{display:inline-block;background:var(--lime);color:var(--dark-ink);font:700 17px/1 'Onest';padding:20px 30px;border-radius:14px;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-note{font-size:14px;margin-top:12px;color:var(--body)}
+.panel{background:var(--panel);border:2px solid var(--line);border-radius:20px;padding:28px}
+.grid{display:grid;gap:18px}
+@media(min-width:760px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}}
+.hero{min-height:min(92vh,860px);display:flex;align-items:center;background:
+  radial-gradient(ellipse at 80% 10%,rgba(215,219,226,.10),transparent 55%),
+  radial-gradient(ellipse at 10% 90%,rgba(204,255,0,.06),transparent 50%),
+  linear-gradient(180deg,var(--bg2),var(--bg))}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin:26px 0 34px;color:var(--steel);font-size:15px}
+.hero .meta b{color:var(--ink)}
+.stars{position:absolute;inset:0;pointer-events:none;background-image:
+  radial-gradient(1.5px 1.5px at 12% 18%,#fff8,transparent),radial-gradient(1px 1px at 72% 12%,#fff6,transparent),
+  radial-gradient(1.5px 1.5px at 88% 40%,#fff7,transparent),radial-gradient(1px 1px at 30% 70%,#fff5,transparent),
+  radial-gradient(1.5px 1.5px at 55% 85%,#fff6,transparent),radial-gradient(1px 1px at 92% 78%,#fff5,transparent)}
+.q{list-style:none}
+.q li{padding:16px 0 16px 34px;border-bottom:1px solid var(--line);position:relative;color:var(--ink)}
+.q li:before{content:"✦";position:absolute;left:4px;top:16px;color:var(--lime)}
+.step{display:flex;gap:18px}
+.step .n{flex:0 0 52px;height:52px;border-radius:50%;border:2px solid var(--lime);color:var(--lime);display:flex;align-items:center;justify-content:center;font:700 20px 'Onest'}
+details{border:2px solid var(--line);border-radius:18px;background:var(--panel);margin-bottom:14px}
+summary{cursor:pointer;list-style:none;padding:22px 24px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary .t{font:600 21px/1.25 'Playfair Display',serif;color:var(--ink)}
+summary .m{font:700 12px 'Onest';letter-spacing:.14em;color:var(--lime);text-transform:uppercase;display:block;margin-bottom:6px}
+summary:after{content:"+";font:400 30px/1 'Onest';color:var(--lime)}
+details[open] summary:after{content:"−"}
+.lessons{padding:0 24px 22px}
+.lessons div{padding:14px 0;border-top:1px solid var(--line)}
+.lessons b{color:var(--ink);display:block;margin-bottom:4px}
+.light{background:var(--light);color:#2b3245}
+.light h2,.light h3{color:var(--dark-ink)}
+.light .kicker{color:#5a6b1a}
+.price{text-align:center}
+.price .sum{font:800 clamp(44px,8vw,72px)/1 'Onest';color:var(--ink);margin:10px 0}
+.price .inst{color:var(--lime);font-weight:500}
+.inc{list-style:none;text-align:left;max-width:520px;margin:26px auto}
+.inc li{padding:10px 0 10px 30px;position:relative}
+.inc li:before{content:"✓";position:absolute;left:0;color:var(--lime);font-weight:700}
+.faq h3{font-size:20px;margin-top:26px}
+footer{padding:40px 0;font-size:14px;color:#8d93a3;border-top:1px solid var(--line)}
+.sticky{position:fixed;left:0;right:0;bottom:0;padding:12px 16px;background:rgba(10,18,36,.94);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:9}
+.sticky .btn{width:100%;max-width:440px;text-align:center;padding:16px}
+@media(min-width:900px){.sticky{display:none}}
+body{padding-bottom:80px}@media(min-width:900px){body{padding-bottom:0}}
+</style>
+</head>
+<body>
+
+<section class="hero"><div class="stars"></div><div class="wrap">
+  <div class="kicker">Курс Ирины Терещенко · старт 5 октября</div>
+  <h1>Пробуждение.<br>Как выйти из <em class="a">матрицы ума</em></h1>
+  <p class="lead" style="margin-top:22px">Сначала личная консультация по вашей карте: я покажу, почему с вами снова и снова повторяются одни и те же ситуации. Потом месяц курса, где вы встраиваете это знание в жизнь и выстраиваете свою ветку реальности.</p>
+  <div class="meta"><span><b>Личная консультация</b> на входе</span><span><b>5 модулей</b>, 21 урок</span><span><b>1 месяц</b> работы с собой</span><span><b>4 встречи</b> в Zoom</span></div>
+  <a class="btn" href="#price">Хочу на курс с консультацией</a>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kicker">Узнаёте себя?</div>
+  <h2>Вроде всё нормально. <em class="a">Но</em></h2>
+  <ul class="q">
+    <li>Деньги есть, а позволить себе путешествие, покупку для себя или поход в магазин без взгляда на чек не получается. Хочется больше, и непонятно как.</li>
+    <li>В отношениях всё спокойно. А если бы он сделал вам предложение сегодня, вы бы пошли за него снова? Думаете дольше пяти секунд, значит, там есть что разбирать.</li>
+    <li>Вы не болеете, иногда простываете. А сил нет, энергии нет, и тело давно просит внимания.</li>
+    <li>Одни и те же истории повторяются с разными людьми, на разных работах, в разных городах.</li>
+    <li>Вы уже делали разборы, ходили к психологам, читали книги. Узнали много, а жизнь осталась прежней.</li>
+  </ul>
+</div></section>
+
+<section style="background:linear-gradient(180deg,var(--bg),var(--bg2))"><div class="wrap">
+  <div class="kicker">Почему так происходит</div>
+  <h2>Мы застряли в <em class="a">шаблонах ума</em></h2>
+  <div class="grid g2">
+    <div class="panel"><p>Нам с детства транслируют картинку «успешного успеха». Мы бежим за ней, иногда даже добегаем. А картинка оказывается чужой, и радости в ней нет.</p><p>Сегодня у людей тревога из-за полного непонимания: что происходит, где я, куда двигаться. Ум пытается всё объяснить, и чем больше он анализирует, тем меньше вы слышите себя.</p></div>
+    <div class="panel"><p>В каждой натальной карте есть точка роста. Пока вы в неё не шагнули, жизнь подкидывает похожие сценарии снова и снова, чтобы вы это наконец увидели.</p><p>Есть два способа жить. Можно быть наблюдателем, который сам формирует процесс и создаёт свою ветку реальности. А можно жить в чужой ветке, где решения за вас принимают страх, чужие ожидания и старые привычки.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kicker">Как устроено</div>
+  <h2>Два шага, после которых <em class="a">меняется жизнь</em></h2>
+  <p class="lead" style="margin-bottom:30px">Сколько раз вы делали разбор, кивали «да, это про меня» и уходили с тем же, с чем пришли? Мы с командой собрали формат, в котором после понимания идёт действие.</p>
+  <div class="grid">
+    <div class="panel step"><div class="n">1</div><div><h3>Личная консультация</h3><p>Вы приходите со своей ситуацией. Я смотрю вашу карту своим опытом и астрологическими инструментами: почему это происходит, какие транзиты сейчас работают, какой урок вам предлагает жизнь и где ваша точка роста. Вы уходите с чёткими рекомендациями под себя. <span data-fill="consult_format">Разбор приходит голосовым сообщением, его удобно переслушать.</span></p></div></div>
+    <div class="panel step"><div class="n">2</div><div><h3>Курс «Пробуждение»</h3><p>Месяц работы, чтобы всё, что вы о себе узнали, стало частью жизни. Пять сфер по очереди: кто я, отношения, деньги, тело, возврат к себе. В конце у вас личная практика, к которой вы возвращаетесь, когда снова начинаете теряться. <span data-fill="course_format">Лекции выходят голосовыми в закрытом Telegram-чате, слушать можно в удобное время. Раз в неделю встречаемся в Zoom: разбираем ваши вопросы и переносим материал в вашу ситуацию, всего 4 встречи.</span></p></div></div>
+  </div>
+</div></section>
+
+<section class="light"><div class="wrap">
+  <div class="kicker">С чем прийти на консультацию</div>
+  <h2>Формулировать запрос не нужно</h2>
+  <p style="max-width:700px">Самое сложное для многих это сформулировать запрос. Когда человек начинает формулировать, ум снова подгоняет жизнь под удобную рамку. Просто опишите, что у вас происходит. Начнёте с работы, а окажется, что дело в отношениях. Или наоборот.</p>
+  <div class="grid g3" style="margin-top:28px">
+    <div><h3>Деньги</h3><p>«Работаю много, а денег на себя не остаётся». «Боюсь потерять доход и не решаюсь на перемены». «Не понимаю, почему возможности проходят мимо».</p></div>
+    <div><h3>Отношения</h3><p>«С мужем вроде всё нормально, но я как будто одна». «Не могу выстроить границы с мамой». «В отношениях повторяется один и тот же сценарий».</p></div>
+    <div><h3>Себя и силы</h3><p>«Не понимаю, чем хочу заниматься». «Сил нет, хотя ничего не болит». «Живу на автомате и перестала слышать свои желания».</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kicker">Программа курса</div>
+  <h2>5 модулей, <em class="a">21 урок</em></h2>
+
+  <details open><summary><div><span class="m">Модуль 1</span><span class="t">Кто я и моё предназначение</span></div></summary><div class="lessons">
+    <div><b>Урок 1. Кто я за пределами своих ролей</b>Что такое Высшее Я и как оно связано с телом, мыслями и представлением о себе. Почему человек так привыкает к ролям, что перестаёт замечать свои желания.</div>
+    <div><b>Урок 2. Как понять смысл своего пути</b>Кто выбирает направление, чему учит прожитый опыт и где остаётся свобода воли. Связь внутреннего выбора и инструментов действия.</div>
+    <div><b>Урок 3. Почему мысли начинают управлять жизнью</b>Как полезная способность думать превращается в привычку всё контролировать и как вопрос «Кто я?» возвращает вас к себе.</div>
+    <div><b>Урок 4. Как распознавать сигналы своего тела</b>Где появляется напряжение, а где становится легче дышать. Как учитывать телесный отклик при выборе.</div>
+    <div><b>Урок 5. Как понять своё предназначение</b>Предназначение как направление жизни и миссия как конкретный способ быть полезной. Как делиться опытом и находить смысл в каждом дне.</div>
+  </div></details>
+
+  <details><summary><div><span class="m">Модуль 2</span><span class="t">Отношения со всеми</span></div></summary><div class="lessons">
+    <div><b>Урок 1. Что отношения помогают узнать о себе</b>Почему одни качества людей раздражают, а другие восхищают. Как замечать знакомый сценарий и выбирать, как действовать дальше.</div>
+    <div><b>Урок 2. Как выстраивать отношения с родителями и детьми</b>Влияние семьи на трёх уровнях. Как признавать вклад родителей и сохранять свои решения и границы.</div>
+    <div><b>Урок 3. Как проживать гнев, обиду и вину</b>Пять шагов прощения. Как выражать недовольство без разрушительных действий.</div>
+    <div><b>Урок 4. Как устанавливать и сохранять личные границы</b>Как говорить о желаниях и ограничениях, отказывать и договариваться, сохраняя близость.</div>
+    <div><b>Урок 5. Как проявлять любовь в повседневной жизни</b>Любовь через конкретные поступки. Как страх потери и отвержения влияет на близость.</div>
+  </div></details>
+
+  <details><summary><div><span class="m">Модуль 3</span><span class="t">Деньги как энергия</span></div></summary><div class="lessons">
+    <div><b>Урок 1. Какую роль деньги играют в вашей жизни</b>Как вы обмениваете время, знания, труд и внимание на деньги и почему финансы влияют на ощущение своей ценности.</div>
+    <div><b>Урок 2. Как связаны деньги, свобода и страх</b>Страх нехватки и потери дохода. Как отличать тревожные импульсы от обдуманной заботы о себе.</div>
+    <div><b>Урок 3. Что мешает замечать доступные возможности</b>Пять препятствий, из-за которых человек не видит того, что уже рядом. Метафора «открытого канала».</div>
+    <div><b>Урок 4. Как возможности становятся частью жизни</b>Как переходить от замеченной возможности к конкретному шагу.</div>
+    <div><b>Урок 5. Как относиться к долгам и распоряжаться деньгами</b>Как спокойно принимать оплату и помощь и разумно пользоваться деньгами.</div>
+  </div></details>
+
+  <details><summary><div><span class="m">Модуль 4</span><span class="t">Здоровье и долголетие</span></div></summary><div class="lessons">
+    <div><b>Урок 1. Как замечать потребности своего тела</b>Сон, еда, вода, движение, тепло, отдых и безопасность. Последовательность наблюдения за собой.</div>
+    <div><b>Урок 2. Как понимать самочувствие и заботиться о мозге</b>Как замечать перегрузку и вовремя обращаться за помощью к специалистам.</div>
+    <div><b>Урок 3. Как обходиться с умственной нагрузкой и защитными реакциями</b>Почему защита становится чрезмерной и как замечать, когда обида и контроль начинают управлять поведением.</div>
+    <div><b>Урок 4. Как согласовать желания, мысли и действия</b>Шесть шагов, чтобы возвращаться к осознанному действию.</div>
+    <div><b>Урок 5. Как заботиться о качестве жизни и своём времени</b>Страх упущенного времени и как распределять внимание между делами, отдыхом и тем, что хочется успеть.</div>
+  </div></details>
+
+  <details><summary><div><span class="m">Модуль 5</span><span class="t">Возврат к себе</span></div></summary><div class="lessons">
+    <div><b>Урок 1. Как собрать пройденное в повседневную практику</b>На какие ценности опираться, какие решения принимать иначе, что сохранить после курса. Как проживать завершения, одиночество и перемены, не теряя связь с собой.</div>
+  </div></details>
+</div></section>
+
+<section style="background:linear-gradient(180deg,var(--bg2),var(--bg))"><div class="wrap">
+  <div class="kicker">Что вы унесёте из этого месяца</div>
+  <h2>Понимание себя и <em class="a">своей жизни</em></h2>
+  <div class="grid g2">
+    <div class="panel"><p>Вы начнёте видеть, что вами движет, почему вы принимаете именно такие решения и где отдаёте управление жизнью страху, чужим ожиданиям или старым сценариям.</p></div>
+    <div class="panel"><p>Лучше поймёте своё тело, свои потребности и границы. По-другому посмотрите на отношения с близкими.</p></div>
+    <div class="panel"><p>Заметите, как отношение к себе связано с деньгами, возможностями и тем, что вы позволяете себе получать от жизни.</p></div>
+    <div class="panel"><p>Перейдёте от бесконечного анализа к вопросу: «Как я хочу прожить свою жизнь и что могу сделать для этого сейчас?»</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kicker">Кто ведёт</div>
+  <h2>Ирина <em class="a">Терещенко</em></h2>
+  <div class="grid g2">
+    <div class="panel"><p>Предприниматель и астролог с опытом больше 14 лет. Говорю на языке действий и результата: астрология для меня это точный расчёт и инструмент решений.</p><p>Сама прошла путь с нуля: тяжёлый развод, трое детей на руках, кредиты. Сегодня у меня пятеро детей, счастливый второй брак и несколько своих бизнесов.</p></div>
+    <div class="panel"><p>Автор 24 книг. Эксперт-астролог на телевидении. Больше 18 лет в Сибирской ассоциации предпринимателей.</p><p>Звёзды не сделают работу за вас. Они показывают, где ваша точка роста и куда идти, а дальше мы идём вместе.</p></div>
+  </div>
+</div></section>
+
+<section id="price" class="price"><div class="wrap">
+  <div class="kicker">Участие</div>
+  <h2>Консультация + курс</h2>
+  <div class="sum" data-fill="price">14 990 ₽</div>
+  <div class="inst" data-fill="installment">Можно в рассрочку без переплаты</div>
+  <ul class="inc">
+    <li>Личная консультация Ирины голосом по вашей карте и вашей ситуации</li>
+    <li>Курс «Пробуждение»: 5 модулей, 21 урок</li>
+    <li>Лекции голосовыми в закрытом Telegram-чате, в удобное время</li>
+    <li>4 встречи в Zoom, раз в неделю: ответы на ваши вопросы</li>
+    <li>Личная практика, к которой вы возвращаетесь после курса</li>
+    <li>Старт 5 октября</li>
+  </ul>
+  <a class="btn" href="https://payform.ru/s4cHooM/" target="_blank" rel="noopener" data-fill="pay_url">Записаться на курс</a>
+  <p class="btn-note">Для консультации понадобятся дата, время и город рождения.</p>
+</div></section>
+
+<section class="light faq"><div class="wrap">
+  <div class="kicker">Вопросы</div>
+  <h2>Частые вопросы</h2>
+  <h3>Я ничего не понимаю в астрологии. Мне подойдёт?</h3><p>Да. Карту смотрю я, а вам объясняю простым языком, что из неё следует и что делать.</p>
+  <h3>Не знаю точного времени рождения</h3><p>Время есть в выписке из роддома или в медицинской карте. Если его нет совсем, всё равно приходите: многое видно и по дате, а точную границу я сверяю по событиям вашей жизни.</p>
+  <h3>Я сама астролог. Мне это нужно?</h3><p>Любой специалист однажды упирается в то, что себя со стороны не видно. Взгляд другого человека на вашу карту и вашу ситуацию даёт то, чего не даёт самостоятельный разбор.</p>
+  <h3>Как проходят занятия?</h3><p>Лекции выходят голосовыми прямо в Telegram-чате, проходить их можно в любое время. Раз в неделю живая встреча в Zoom. Программа рассчитана на месяц, старт 5 октября.</p>
+  <h3>Можно ли оплатить частями?</h3><p data-fill="installment_faq">Да, при оплате доступна рассрочка без переплаты.</p>
+</div></section>
+
+<footer><div class="wrap">© Ирина Терещенко · <a href="https://metaastrology.ru/">metaastrology.ru</a> · Telegram <a href="https://t.me/tereshchenkoirina">@tereshchenkoirina</a><br>Курс посвящён самопознанию и личному развитию и не заменяет консультацию врача или психотерапевта.</div></footer>
+
+<div class="sticky"><a class="btn" href="#price">Курс с консультацией · 14 990 ₽</a></div>
+</body>
+</html>
