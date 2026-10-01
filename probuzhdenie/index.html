@@ -68,6 +68,20 @@ details[open] summary:after{content:"−"}
 .inc li{padding:10px 0 10px 30px;position:relative}
 .inc li:before{content:"✓";position:absolute;left:0;color:var(--lime);font-weight:700}
 .faq h3{font-size:20px;margin-top:26px}
+.pull{padding:56px 0;text-align:center;background:radial-gradient(ellipse at 50% 50%,rgba(204,255,0,.07),transparent 60%)}
+.pull blockquote{max-width:760px;margin:0 auto;font:italic 500 clamp(24px,3.6vw,34px)/1.35 'Playfair Display',Georgia,serif;color:var(--ink)}
+.pull blockquote:before{content:"“";display:block;font:800 72px/0.6 'Playfair Display',serif;color:var(--lime);margin-bottom:22px}
+.pull cite{display:block;margin-top:20px;font:700 13px/1 'Onest';letter-spacing:.16em;text-transform:uppercase;color:var(--lime);font-style:normal}
+.gift{padding:64px 0;background:linear-gradient(180deg,var(--bg),var(--bg2))}
+.books{display:grid;gap:22px;grid-template-columns:1fr 1fr;margin-top:30px}
+@media(min-width:860px){.books{grid-template-columns:repeat(4,1fr)}}
+.book img{width:100%;aspect-ratio:343/485;object-fit:cover;border-radius:10px;box-shadow:0 18px 40px rgba(0,0,0,.45),0 0 0 1px var(--line);transform:rotate(-1.5deg);transition:transform .2s}
+.book:nth-child(even) img{transform:rotate(1.5deg)}
+.book img:hover{transform:rotate(0) scale(1.03)}
+.book h3{font-size:18px;margin:16px 0 4px}
+.book p{font-size:14px;line-height:1.45}
+.book .mod{display:inline-block;margin-top:8px;font:700 11px/1 'Onest';letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+.gift .badge{display:inline-block;border:2px solid var(--lime);color:var(--lime);border-radius:999px;padding:8px 16px;font:700 13px 'Onest';letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
 footer{padding:40px 0;font-size:14px;color:#8d93a3;border-top:1px solid var(--line)}
 .sticky{position:fixed;left:0;right:0;bottom:0;padding:12px 16px;background:rgba(10,18,36,.94);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:9}
 .sticky .btn{width:100%;max-width:440px;text-align:center;padding:16px}
@@ -115,6 +129,8 @@ body{padding-bottom:80px}@media(min-width:900px){body{padding-bottom:0}}
     <div class="panel step"><div class="n">2</div><div><h3>Курс «Пробуждение»</h3><p>Месяц работы, чтобы всё, что вы о себе узнали, стало частью жизни. Пять сфер по очереди: кто я, отношения, деньги, тело, возврат к себе. В конце у вас личная практика, к которой вы возвращаетесь, когда снова начинаете теряться. <span data-fill="course_format">Лекции выходят голосовыми в закрытом Telegram-чате, слушать можно в удобное время. Раз в неделю встречаемся в Zoom: разбираем ваши вопросы и переносим материал в вашу ситуацию, всего 4 встречи.</span></p></div></div>
   </div>
 </div></section>
+
+<section class="pull"><div class="wrap"><blockquote>Сначала вы увидите, что у вас сломано. Потом поймёте, откуда поломка. И только потом начнёте менять, уже своими руками.<cite>Ирина Терещенко</cite></blockquote></div></section>
 
 <section class="light"><div class="wrap">
   <div class="kicker">С чем прийти на консультацию</div>
@@ -184,9 +200,11 @@ body{padding-bottom:80px}@media(min-width:900px){body{padding-bottom:0}}
   <h2>Ирина <em class="a">Терещенко</em></h2>
   <div class="grid g2">
     <div class="panel"><p>Предприниматель и астролог с опытом больше 14 лет. Говорю на языке действий и результата: астрология для меня это точный расчёт и инструмент решений.</p><p>Сама прошла путь с нуля: тяжёлый развод, трое детей на руках, кредиты. Сегодня у меня пятеро детей, счастливый второй брак и несколько своих бизнесов.</p></div>
-    <div class="panel"><p>Автор 24 книг. Эксперт-астролог на телевидении. Больше 18 лет в Сибирской ассоциации предпринимателей.</p><p>Звёзды не сделают работу за вас. Они показывают, где ваша точка роста и куда идти, а дальше мы идём вместе.</p></div>
+    <div class="panel"><p>Автор 24 книг. Эксперт-астролог на телевидении. Больше 18 лет в Сибирской ассоциации предпринимателей.</p></div>
   </div>
 </div></section>
+
+<section class="pull"><div class="wrap"><blockquote>Звёзды не сделают работу за вас. Они показывают, где ваша точка роста и куда идти. Дальше мы идём вместе.<cite>Ирина Терещенко</cite></blockquote></div></section>
 
 <section id="price" class="price"><div class="wrap">
   <div class="kicker">Участие</div>
@@ -199,10 +217,23 @@ body{padding-bottom:80px}@media(min-width:900px){body{padding-bottom:0}}
     <li>Лекции голосовыми в закрытом Telegram-чате, в удобное время</li>
     <li>4 встречи в Zoom, раз в неделю: ответы на ваши вопросы</li>
     <li>Личная практика, к которой вы возвращаетесь после курса</li>
+    <li>4 книги Ирины в подарок</li>
     <li>Старт 5 октября</li>
   </ul>
   <a class="btn" href="https://payform.ru/s4cHooM/" target="_blank" rel="noopener" data-fill="pay_url">Записаться на курс</a>
   <p class="btn-note">Для консультации понадобятся дата, время и город рождения.</p>
+</div></section>
+
+<section class="gift"><div class="wrap" style="text-align:center">
+  <div class="badge">🎁 В подарок</div>
+  <h2>4 книги Ирины <em class="a">к курсу</em></h2>
+  <p class="lead" style="margin:0 auto">Каждая книга идёт рядом со своим модулем: читаете, когда хочется глубже, и возвращаетесь к ней после курса.</p>
+  <div class="books" style="text-align:left">
+    <div class="book"><img src="img/V_chem_smysl.jpg" alt="Книга «В чём смысл?»" loading="lazy"><h3>В чём смысл?</h3><p>48 ответов, которые изменят вашу жизнь. 334 страницы.</p><span class="mod">К модулю 1 · Кто я</span></div>
+    <div class="book"><img src="img/V_kontakte_s_soboy_emocii.jpg" alt="Книга «В контакте с собой»" loading="lazy"><h3>В контакте с собой</h3><p>Как понимать свои эмоции. 158 страниц.</p><span class="mod">К модулю 2 · Отношения</span></div>
+    <div class="book"><img src="img/Gde_moi_dengi.jpg" alt="Книга «Где мои деньги?»" loading="lazy"><h3>Где мои деньги?</h3><p>Астрологическая инструкция к личной энергосистеме. 258 страниц.</p><span class="mod">К модулю 3 · Деньги</span></div>
+    <div class="book"><img src="img/Astrologiya_osoznannogo_pitaniya.jpg" alt="Книга «Астрология осознанного питания»" loading="lazy"><h3>Астрология осознанного питания</h3><p>Почему вы заедаете стресс. 180 страниц.</p><span class="mod">К модулю 4 · Здоровье</span></div>
+  </div>
 </div></section>
 
 <section class="light faq"><div class="wrap">
