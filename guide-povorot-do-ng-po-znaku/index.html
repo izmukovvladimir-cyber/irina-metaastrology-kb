@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Поворот до Нового года: где он случится у вашего знака и что сделать</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"><style>
+:root{
+--accent:#CCFF00;--accent-ink:#0A1224;--ink:#0A1224;--offwhite:#ffffff;
+--bg-light:#F5F2E9;--bg-dark:#0A1224;
+--bg:var(--bg-light);--text:#1c1c1f;--muted:#6b7280;--surface:#ffffff;
+--card-bg:rgba(0,0,0,.035);--card-border:rgba(0,0,0,.10);--hair:rgba(0,0,0,.08);
+--dot:rgba(0,0,0,.05);--shadow:0 10px 30px rgba(0,0,0,.10);
+--font-display:'Inter Tight',system-ui,sans-serif;
+--font-body:'Inter',system-ui,-apple-system,sans-serif;
+--font-mono:'JetBrains Mono',ui-monospace,monospace;
+--font-serif:'PT Serif',Georgia,serif;
+}
+:root[data-theme=dark]{
+--bg:var(--bg-dark);--text:#f4f4f5;--muted:#9ca3af;--surface:#1a1a1c;
+--card-bg:rgba(255,255,255,.05);--card-border:rgba(255,255,255,.12);--hair:rgba(255,255,255,.10);
+--dot:rgba(255,255,255,.05);--shadow:0 10px 30px rgba(0,0,0,.45);
+}
+@media(prefers-color-scheme:dark){
+:root:not([data-theme=light]){
+--bg:var(--bg-dark);--text:#f4f4f5;--muted:#9ca3af;--surface:#1a1a1c;
+--card-bg:rgba(255,255,255,.05);--card-border:rgba(255,255,255,.12);--hair:rgba(255,255,255,.10);
+--dot:rgba(255,255,255,.05);--shadow:0 10px 30px rgba(0,0,0,.45);
+}
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg)}
+body{color:var(--text);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--font-mono)}
+/* ============ header ============ */
+.hd{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--hair)}
+.hd-in{height:66px;max-width:1340px;margin:0 auto;padding:0 44px;display:flex;align-items:center;gap:24px}
+.logo{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.04em;text-transform:uppercase;color:var(--text);display:inline-flex;align-items:center;flex:none;white-space:nowrap}
+.logo .sq{width:8px;height:8px;background:var(--accent);border:1.5px solid var(--ink);display:inline-block;margin:0 5px 0 3px}
+:root[data-theme=dark] .logo .sq{border-color:rgba(255,255,255,.7)}
+.hd-nav{display:flex;align-items:center;gap:22px;font-size:14px;flex:none}
+.hd-nav a{color:var(--muted);position:relative;padding:4px 1px;transition:color .15s;white-space:nowrap}
+.hd-nav a:hover{color:var(--text)}
+.hd-nav a.cur{color:var(--text);font-weight:600}
+.hd-nav a.cur::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:1.5px;background:var(--text);opacity:.8}
+.sp{flex:1}
+.tools{display:flex;align-items:center;gap:10px;flex:none}
+.tgl{width:34px;height:34px;border:1px solid var(--hair);border-radius:9px;display:grid;place-items:center;color:var(--text);background:none;cursor:pointer;padding:0;transition:border-color .15s}
+.tgl:hover{border-color:var(--muted)}
+.tgl svg{display:block;width:15px;height:15px}
+.tgl .ic-sun{display:none}
+:root[data-theme=dark] .tgl .ic-sun{display:block}
+:root[data-theme=dark] .tgl .ic-moon{display:none}
+.hd-btn{font-family:var(--font-display);font-size:14px;font-weight:600;padding:10px 17px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:var(--accent);color:var(--accent-ink);border:1.5px solid var(--ink);transition:transform .12s;flex:none}
+.hd-btn:hover{transform:translateY(-1px)}
+.hd-btn .ar{transition:transform .15s}
+.hd-btn:hover .ar{transform:translateX(3px)}
+:root[data-theme=dark] .hd-btn{border-color:var(--accent)}
+/* ============ shell ============ */
+.wrap{max-width:1340px;margin:0 auto;padding:0 44px 60px}
+.eyebrow{font-family:var(--font-mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;color:var(--muted)}
+.eyebrow .dot{width:7px;height:7px;background:var(--accent);outline:1px solid var(--ink);display:inline-block;flex:none}
+:root[data-theme=dark] .eyebrow .dot{outline-color:rgba(255,255,255,.35)}
+/* ============ hero ============ */
+.hero{margin:26px 0 6px;border-radius:18px;overflow:hidden;background:var(--ink);color:#f5f5f0;position:relative;min-height:340px;display:flex}
+.hero .art{position:absolute;inset:0;background:var(--ink)}
+/* the dot-grid and the accent bloom are the fallback look while there is no cover image yet;
+   cover_css() turns them off as soon as site.hero_image is set (two of each only muddies it) */
+.hero .grid{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:11px 11px}
+.hero .glow{position:absolute;right:-90px;top:-90px;width:420px;height:420px;border-radius:50%;background:var(--accent);filter:blur(120px);opacity:.28}
+/* scrim keeps the copy on dark whatever the glow does behind it (on narrow screens the
+   glow otherwise floods the whole card and the title lands on bright lime) */
+.hero .txt{position:relative;z-index:2;padding:44px 44px 38px;display:flex;flex-direction:column;max-width:760px;
+background:linear-gradient(100deg,color-mix(in srgb,var(--ink) 88%,transparent) 0%,color-mix(in srgb,var(--ink) 55%,transparent) 62%,transparent 100%)}
+.hero .eyebrow{color:var(--accent)}
+/* hero is always the dark ink card, so its title must not follow --text (black on black in light theme) */
+.hero h1{font-family:var(--font-display);font-size:42px;font-weight:700;letter-spacing:-.025em;line-height:1.08;margin:18px 0 14px;max-width:17ch;color:#f5f5f0}
+.hero .desc{font-size:16px;line-height:1.55;color:rgba(245,245,240,.72);max-width:52ch;margin:0}
+.hero .read{margin-top:auto;padding-top:30px;display:inline-flex;align-items:center;gap:14px;color:#fbfbf8;cursor:pointer;align-self:flex-start}
+.hero .read .circ{width:46px;height:46px;border-radius:50%;background:var(--accent);display:grid;place-items:center;color:var(--accent-ink);flex:none;transition:transform .15s}
+.hero .read:hover .circ{transform:translateX(3px)}
+.hero .read .lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+/* ============ tabs ============ */
+/* grid, not flex-wrap: inline chips left a ragged right edge and one orphan on the
+   second row. auto-fit + minmax(240px) resolves to exactly 5 columns on a 1440 shell
+   (avail 1352px: 6 cols would need 240*6+8*5=1480), so 10 chips read as a deliberate
+   5+5 block. Narrow screens re-solve to 4/3/2 columns via the overrides below. */
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;margin:34px 0 0;padding-top:24px;border-top:1px solid var(--hair)}
+.tab{font-size:13px;font-weight:500;padding:9px 14px;border-radius:999px;border:1px solid var(--card-border);color:var(--muted);background:none;cursor:pointer;font-family:inherit;white-space:nowrap;transition:border-color .15s,color .15s;display:flex;align-items:center;justify-content:center;text-align:center;width:100%;min-width:0}
+.tab:hover{color:var(--text);border-color:var(--muted)}
+.tab.on{background:var(--accent);color:var(--accent-ink);border-color:var(--ink);font-weight:600}
+:root[data-theme=dark] .tab.on{border-color:var(--accent)}
+.count{font-family:var(--font-mono);font-size:12px;color:var(--muted);margin:18px 0 14px}
+/* ============ cards ============ */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{border:1px solid var(--card-border);border-radius:14px;padding:18px;background:var(--card-bg);display:flex;flex-direction:column;gap:9px;min-height:158px;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--ink);transform:translateY(-2px)}
+:root[data-theme=dark] .card:hover{border-color:var(--accent)}
+.card .tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
+.card .tag .d{width:7px;height:7px;background:var(--accent);outline:1px solid var(--ink);display:inline-block;flex:none}
+:root[data-theme=dark] .card .tag .d{outline-color:rgba(255,255,255,.35)}
+.card .ct{font-family:var(--font-display);font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.25;color:var(--text)}
+.card .cd{font-size:13.5px;color:var(--muted);line-height:1.5;flex:1;margin:0}
+.card .cm{font-family:var(--font-mono);font-size:10.5px;color:var(--muted)}
+.empty{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--muted);padding:30px 0}
+/* ============ article ============ */
+.page{max-width:760px;margin:0 auto;padding:34px 44px 60px}
+.pcol{min-width:0}
+/* ============ toc: long guides only (4+ sections), shell adds .has-toc ============ */
+/* the reading column keeps the exact measure of a short guide (672px = 760 minus the
+   44px gutters), the menu hangs to its right and the pair is centered together, so a
+   long guide reads at the same width as a short one. */
+.page.has-toc{max-width:1180px;display:grid;grid-template-columns:minmax(0,672px) 200px;gap:44px;justify-content:center;align-items:start}
+/* padding-top 0 so «На странице» sits on the breadcrumb line of the article column */
+.toc{position:sticky;top:66px;align-self:start;max-height:calc(100vh - 96px);overflow-y:auto;font-size:12.5px;padding:0 0 24px}
+.toc .h{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-left:13px}
+/* the marker gutter is always reserved (transparent border), so switching sections
+   recolors in place instead of nudging the text. NB: .toc scrolls on the y axis, which
+   makes the x axis a scroll box too, so a negative margin here would be clipped away. */
+.toc a{display:block;color:var(--muted);padding:5px 0 5px 11px;line-height:1.4;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc a:hover{color:var(--text)}
+.toc a.on{color:var(--text);font-weight:600;border-left-color:var(--accent)}
+.toc{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
+.toc::-webkit-scrollbar{width:5px}
+.toc::-webkit-scrollbar-track{background:transparent}
+.toc::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:10px}
+:root[data-theme=dark] .toc{scrollbar-color:rgba(255,255,255,.2) transparent}
+:root[data-theme=dark] .toc::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18)}
+/* anchor lands below the sticky header, not under it */
+.sec h2[id]{scroll-margin-top:86px}
+/* no room for a side column: fall back to the plain reading page */
+@media(max-width:1100px){
+.page.has-toc{display:block;max-width:760px}
+.toc{display:none}
+}
+.bc{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.bc a:hover{color:var(--text)}
+h1{font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1.12;margin:0 0 6px;color:var(--text)}
+.lead{font-family:var(--font-serif);font-size:20px;line-height:1.5;font-weight:700;color:var(--text);border-left:3px solid var(--accent);padding-left:18px;margin:20px 0 22px}
+.meta{font-family:var(--font-mono);font-size:11px;color:var(--muted);padding-bottom:20px;border-bottom:1px solid var(--hair);margin-bottom:26px}
+.how{border:1px solid var(--card-border);border-radius:12px;background:var(--surface);padding:16px 18px;margin:22px 0;font-size:14.5px;line-height:1.56;color:var(--text)}
+.p,.sec{border:1px solid var(--card-border);border-radius:14px;background:var(--card-bg);padding:20px;margin:18px 0}
+.p .num{display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--accent-ink);background:var(--accent);border:1px solid var(--ink);padding:3px 10px;margin-bottom:10px}
+:root[data-theme=dark] .p .num{border-color:var(--accent)}
+.p h2{font-family:var(--font-display);font-size:20px;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+.p .when{font-size:13.5px;color:var(--muted);margin:0 0 10px}
+.sec h2{font-family:var(--font-display);font-size:22px;margin:0 0 10px;font-weight:700;letter-spacing:-.015em}
+.sec h3{font-family:var(--font-display);font-size:17px;margin:18px 0 6px;font-weight:700}
+.sec p,.p p{font-size:15.5px;line-height:1.66;margin:10px 0}
+.sec ol,.sec ul{margin:8px 0;padding-left:22px;font-size:15.5px;line-height:1.66}
+.sec li{margin:0 0 7px}
+.sec li::marker{color:var(--muted)}
+.lblrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 6px}
+.lbl{font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+.box{font-family:var(--font-mono);font-size:12.5px;background:var(--surface);border:1px solid var(--hair);border-radius:10px;padding:14px 16px;white-space:pre-wrap;line-height:1.6;color:var(--text);overflow-x:auto}
+.copy{font-family:var(--font-mono);font-size:11px;color:var(--muted);background:none;border:1px solid var(--card-border);border-radius:8px;padding:6px 11px;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s,background .15s}
+.copy:hover{color:var(--text);border-color:var(--muted)}
+.copy.done{background:var(--accent);color:var(--accent-ink);border-color:var(--ink);font-weight:600}
+.ex{font-size:14px;color:var(--muted);margin-top:12px}
+.ex b{color:var(--text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.cardb{background:var(--surface);border:1px solid var(--card-border);border-radius:12px;padding:14px 16px}
+.cardb h3{font-family:var(--font-display);margin:0 0 6px;font-size:16px}
+.cardb ul,.cardb ol{padding-left:18px;margin:6px 0;font-size:14.5px}
+.cardb p{font-size:14.5px;margin:6px 0}
+.quote{font-family:var(--font-serif);font-style:italic;color:var(--text);opacity:.85;border-left:3px solid var(--accent);padding-left:14px;margin:14px 0;font-size:15.5px}
+.note{font-size:14.5px;line-height:1.56;color:var(--text);background:var(--surface);border:1px solid var(--card-border);border-left:3px solid var(--accent);border-radius:10px;padding:12px 16px;margin:14px 0}
+.linkbtn{display:inline-block;margin:12px 0 4px;font-weight:600;font-size:15px;color:var(--text);word-break:break-word;border-bottom:2px solid var(--accent)}
+.linkbtn:hover{opacity:.75}
+/* книжная плашка: обложка слева, текст и кнопка справа. Врезка внутри чтения, поэтому
+   держится тише карточек: без тени, рамка обычная, ширина обложки фиксированная, чтобы
+   строка описания не прыгала от размера картинки */
+.leadimg{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--card-border);margin:20px 0 6px}
+.leadimg+.cap{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 20px}
+.promo{display:flex;gap:18px;align-items:flex-start;background:var(--surface);border:1px solid var(--card-border);border-radius:12px;padding:16px 18px;margin:22px 0}
+.promo .cover{flex:0 0 104px;width:104px;border-radius:8px;display:block;border:1px solid var(--card-border)}
+.promo .pb{min-width:0}
+.promo .lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.promo h4{font-family:var(--font-display);font-size:17px;margin:0 0 6px;color:var(--text)}
+.promo p{font-size:14.5px;line-height:1.55;margin:0 0 12px;color:var(--text)}
+.promo .buy{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:14px;font-weight:600;padding:10px 18px;border-radius:999px;background:var(--accent);color:var(--accent-ink);border:1px solid var(--ink)}
+.promo .buy:hover{opacity:.85}
+@media(max-width:560px){
+.promo{flex-direction:column;gap:14px}
+.promo .cover{flex:0 0 auto;width:132px;align-self:center}
+}
+.mid{margin:26px 0;text-align:center}
+.mid a{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-size:14.5px;font-weight:600;padding:12px 22px;border-radius:999px;background:var(--ink);color:var(--offwhite);border:1px solid var(--ink)}
+:root[data-theme=dark] .mid a{background:var(--surface);border-color:var(--accent);color:var(--text)}
+/* ============ CTA ============ */
+.cta{margin:40px 0 6px;padding:30px 32px;border-radius:18px;background:var(--ink);color:#f5f5f0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:10px 10px}
+.cta .ttl{font-family:var(--font-display);font-size:25px;font-weight:700;letter-spacing:-.02em;margin:10px 0 6px}
+.cta .sub{font-size:14.5px;line-height:1.55;color:rgba(245,245,240,.68);margin:0 0 20px;max-width:60ch}
+.cta .eyebrow{color:var(--accent)}
+.cta-btn{font-family:var(--font-display);font-size:15px;font-weight:600;padding:13px 22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);display:inline-flex;align-items:center;gap:9px}
+.cta-btn:hover{transform:translateY(-1px)}
+.cta-note{font-size:12.5px;line-height:1.5;color:rgba(245,245,240,.5);margin:12px 0 0}
+/* ============ footer ============ */
+.ft{border-top:1px solid var(--hair);background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:9px 9px;padding:36px 0 26px}
+.ft-in{max-width:1340px;margin:0 auto;padding:0 44px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.ft-in .logo{font-size:17px}
+.ft-links{display:flex;gap:20px;font-size:13.5px;color:var(--text);opacity:.82}
+.ft-links a:hover{opacity:1}
+.ft-bot{max-width:1340px;margin:20px auto 0;padding:16px 44px 0;border-top:1px solid var(--hair);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* реквизиты продавца: их требует платёжный провайдер, поэтому строка отдельная и всегда видимая */
+.ft-legal{max-width:1340px;margin:8px auto 0;padding:0 44px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);opacity:.85}
+/* ============ responsive ============ */
+@media(max-width:900px){
+.hd-in,.wrap,.ft-in,.ft-bot{padding-left:20px;padding-right:20px}
+.page{padding:26px 20px 50px}
+/* narrow: the copy sits ON the artwork (no room to dodge it), so the scrim goes near-opaque
+   under the text and only clears near the bottom edge, where the art can breathe */
+.hero .txt{padding:30px 24px 26px;background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 94%,transparent) 0%,color-mix(in srgb,var(--ink) 88%,transparent) 68%,color-mix(in srgb,var(--ink) 60%,transparent) 100%)}
+.hero .glow{width:240px;height:240px;right:-80px;top:-80px;opacity:.2}
+.hero h1{font-size:29px}
+.hero{min-height:0}
+h1{font-size:28px}
+.grid2{grid-template-columns:1fr}
+.tabs{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+}
+@media(max-width:700px){
+.hd-in{height:60px;gap:12px}
+.hd-nav{display:none}
+.logo{font-size:16px}
+.hd-btn{font-size:12.5px;padding:9px 13px}
+.cards{grid-template-columns:1fr}
+.cta{padding:24px 20px}
+.cta .ttl{font-size:21px}
+.lead{font-size:18px}
+.ft-in{gap:14px}
+}
+/* phone: logo + toggle + CTA must all survive on a 390px bar, so tighten the type
+   and let the CTA label clamp instead of pushing the button off the screen */
+@media(max-width:460px){
+.hd-in{gap:8px;padding:0 14px}
+.logo{font-size:12.5px}
+.hd-btn{font-size:11px;padding:8px 10px;gap:5px;min-width:0}
+.hd-btn .lb{display:block;max-width:36vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tgl{width:32px;height:32px}
+.wrap,.ft-in,.ft-bot{padding-left:14px;padding-right:14px}
+.page{padding:22px 14px 44px}
+/* phone: "all" pill spans the full row alone, categories sit 3 per row under it
+   (Vladimir, 16.07). Long labels wrap to two lines instead of clipping. */
+.tabs{grid-template-columns:repeat(3,1fr);gap:7px}
+.tabs .tab[data-cat="all"]{grid-column:1 / -1}
+.tab{font-size:11.5px;padding:9px 6px;white-space:normal;line-height:1.25;min-height:38px}
+}
+
+.asc{border:1px solid var(--card-border);border-radius:16px;padding:20px;margin:22px 0;background:var(--card-bg)}
+.asc.sunsign{border-color:var(--accent)}
+.asc h3{margin:0 0 4px;font-family:var(--font-display)}
+.asc .sub{color:var(--muted);font-size:15px;margin:0 0 16px}
+.ascf{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.ascf label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+.ascf input,.ascf select{font:inherit;font-size:16px;padding:10px 12px;border-radius:10px;
+  border:1px solid var(--card-border);background:var(--surface);color:var(--text)}
+.ascgo{margin-top:14px;font:inherit;font-weight:600;font-size:16px;padding:12px 22px;border:0;
+  border-radius:10px;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.ascout{margin-top:16px;padding:16px;border-radius:12px;background:var(--surface);border:1px solid var(--card-border)}
+.ascout .big{font-size:24px;font-weight:700;margin:0 0 6px;font-family:var(--font-display)}
+.ascout .why{color:var(--muted);font-size:14px;margin:8px 0 0}
+.ascwrap{overflow-x:auto;margin-top:20px}
+.asctab{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+.asctab th,.asctab td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--hair);vertical-align:top}
+.asctab th{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.asctab tr.hit td{background:var(--accent);color:var(--accent-ink)}
+.asctab tr.hit td b{color:var(--accent-ink)}
+/* phone: the three-column table turns into one card per ascendant, each cell labelled */
+@media(max-width:700px){
+.ascwrap{overflow-x:visible}
+.asctab{min-width:0;display:block}
+.asctab thead{display:none}
+.asctab tbody,.asctab tr,.asctab td{display:block;width:100%}
+.asctab tr{border:1px solid var(--card-border);border-radius:12px;padding:10px 12px;margin:0 0 12px}
+.asctab tr.hit{border-color:var(--accent)}
+.asctab td{border:0;padding:8px 0}
+.asctab td+td{border-top:1px solid var(--hair)}
+.asctab td:before{content:attr(data-l);display:block;font-size:11px;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--muted);margin-bottom:3px}
+.asctab td:first-child:before{display:none}
+.asctab td:first-child b{font-size:19px;font-family:var(--font-display)}
+.asctab tr.hit td:before{color:var(--accent-ink);opacity:.7}
+}
+
+.pluh{border:1px solid var(--card-border);border-radius:12px;margin:0 0 10px;background:var(--surface)}
+.pluh summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none}
+.pluh summary::-webkit-details-marker{display:none}
+.pluh summary:after{content:"+";float:right;color:var(--muted)}
+.pluh[open] summary:after{content:"-"}
+.pluh .in{padding:0 16px 12px}
+.pluh .in p{margin:0 0 10px}
+.pluh.hit{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.pluhouses{margin-top:20px}
+.hero:not(.about-hero) .art{background:var(--ink) url('/media/hero.jpg') center right/cover no-repeat}.hero:not(.about-hero) .grid{display:none}.hero:not(.about-hero) .glow{display:none}@media(max-width:900px){.hero:not(.about-hero) .art{background-position:72% center}}.hero.about-hero{min-height:580px}.hero.about-hero .art{left:auto;right:0;width:50%;background:url('/media/about.jpg') center top/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 44%);mask-image:linear-gradient(90deg,transparent 0%,#000 44%)}.hero.about-hero .txt{max-width:50%;background:none}.hero.about-hero h1{font-size:32px;max-width:12ch}.hero.about-hero .desc{font-size:15px;max-width:30ch}@media(max-width:760px){.hero.about-hero{display:block;padding-top:210px}.hero.about-hero .art{left:0;right:0;width:100%;height:360px;background-position:center top;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}.hero.about-hero .txt{max-width:100%;padding-top:6px}.hero.about-hero h1{font-size:27px;max-width:none}.hero.about-hero .desc{max-width:none}}</style>
+<script>
+(function(){
+  var d=document.documentElement;
+  function set(t){d.setAttribute('data-theme',t);}
+  var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+  var s=null;try{s=localStorage.getItem('vi-theme');}catch(e){}
+  set(q||s||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.tgl');if(!b)return;
+    var n=d.getAttribute('data-theme')==='dark'?'light':'dark';
+    set(n);try{localStorage.setItem('vi-theme',n);}catch(err){}
+  });
+})();
+</script>
+</head><body><header class="hd"><div class="hd-in"><a class="logo" href="/">Ирина<i class="sq"></i>Терещенко</a><nav class="hd-nav"><a href="/">Все материалы</a><a href="/about/">Обо мне</a></nav><span class="sp"></span><div class="tools"><button class="tgl" type="button" aria-label="Сменить тему"><svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg></button><a class="hd-btn" href="https://t.me/tereshchenkoirina"><span class="lb">Личная консультация</span><span class="ar">&#8594;</span></a></div></div></header>
+<main class="page has-toc">
+<article class="pcol">
+<div class="bc"><a href="/#cat-razbor-po-znaku">Разбор по знаку</a></div>
+<h1>Поворот до Нового года: где он случится у вашего знака и что сделать</h1>
+<p class="lead">Что до Нового года потребует вашего внимания: работа, деньги или отношения? Я собрала для каждого знака даты с 27 ноября по 7 января и подсказала, что стоит сделать в эти дни. В конце каждого знака написала, что отпустить до 31 декабря. Памятка по знаку Солнца и по асценденту. Время везде московское.</p>
+<div class="how">Найдите свой знак и прочитайте раздел целиком, это пара минут. Если знаете свой асцендент, прочитайте и его раздел: он часто точнее описывает события. Свои даты внесите в календарь телефона сразу. В конце общий календарь для всех знаков. Это общий прогноз по знаку, гарантий даты не дают. Решения о деньгах, работе и здоровье принимайте по фактам своей ситуации.</div>
+<div class="sec"><h2 id="sec-0">Почему поворот именно сейчас</h2><p>20 февраля 2026 года Сатурн, планета порядка и дисциплины, и Нептун, планета мечты и интуиции, встретились в самом начале Овна. Такая встреча бывает примерно раз в 36 лет и запускает новый большой цикл для всех знаков.</p><p>С июля обе планеты шли так, что с Земли казалось, будто они движутся назад. Многое буксовало: отложенные решения, зависшие договорённости, планы на паузе. 11 декабря в 01:44 разворачивается вперёд Сатурн, 12 декабря в 22:04 Нептун. Обе планеты остаются в Овне, Сатурн до весны 2028 года.</p><p>У каждого знака Овен отвечает за свою сферу жизни. В ней и пройдёт ваш поворот. 21 декабря в 23:45 зимнее солнцестояние, самая длинная ночь года. Дальше день прибавляет, и новый этап становится заметен в делах.</p></div>
+<div class="sec"><h2 id="sec-1">Ваш знак</h2><h3>Овен. Поворот в вас самих</h3><p>Где поворот: Сатурн и Нептун стоят в вашем знаке. Поворот касается вас лично: как вы живёте, как выглядите, чего хотите для себя. Прежний образ себя стал тесным. Марс, ваша планета, весь период идёт по сфере ежедневной работы и самочувствия, поэтому сил на дела много. Следите, чтобы оставалось время на отдых.</p><p>Ваши даты:</p><ul><li>11 и 12 декабря. Обе планеты разворачиваются вперёд в вашем знаке. Запишите одно решение о себе, которое вы откладываете с лета: режим, внешний вид, своё дело, переезд. Рядом поставьте дату первого шага. Почему: в эти дни отложенное с июля снова начинает двигаться, и решение легче удержать.</li><li>21 декабря. Солнце переходит в вашу сферу карьеры и репутации. Подведите итог года в работе тремя строками: что сделано, чем гордитесь, куда хотите расти. Почему: с этого дня работа выходит на первый план, и итог пригодится в январских разговорах о должности или цене.</li><li>24 декабря. Полнолуние в сфере дома и семьи. Расскажите близким, что в вас поменялось и что теперь будет по-другому. Почему: перемены в вас первыми чувствуют домашние, и честный разговор снимает напряжение.</li></ul><p>Что сделать, чтобы не пропустить: перед каждым крупным решением до 7 января спросите себя: «Мне этого сейчас хочется или я выбираю по привычке?» Почему: в вашем знаке начался цикл примерно на 36 лет, и выбор этих недель задаёт тон надолго.</p><p>Что отпустить до 31 декабря: привычку выбирать то, чего от вас ждут другие. Почему: новый этап у Овнов начинается с собственного решения о себе.</p><h3>Телец. Поворот через завершение старого</h3><p>Где поворот: у Тельцов Овен отвечает за сферу тишины, отдыха и всего, что идёт к завершению. Поворот идёт изнутри: усталость от старого, желание закрыть затянувшиеся истории, потребность выдохнуть. Снаружи может быть тихо, при этом внутри решение уже созрело.</p><p>Ваши даты:</p><ul><li>4 декабря. Венера, ваша планета, переходит в сферу отношений и договоров и идёт там до 7 января. Обсудите со второй половиной или с деловым партнёром, что каждый из вас хочет поменять в новом году. Почему: в эти недели людям рядом легче слышать друг друга.</li><li>9 декабря. Новолуние в сфере общих денег. Общие деньги это то, чем вы распоряжаетесь вместе с другими: например, семейный бюджет, общий кредит или доля в квартире. Выпишите общие платежи до конца года и договоритесь, кто за что отвечает. Почему: новолуние начинает новый цикл, и порядок, наведённый сейчас, держится весь следующий месяц.</li><li>11 и 12 декабря. Сатурн и Нептун разворачиваются вперёд в вашей сфере завершений. Закройте одну давнюю историю: дело, обещание, обиду. Почему: эти дни помогают поставить точку там, где всё буксовало с лета.</li></ul><p>Что сделать, чтобы не пропустить: до 31 декабря возьмите хотя бы два дня полного отдыха, без дел и без телефона. Почему: у Тельцов поворот рождается в тишине, и в суете его легко не услышать.</p><p>Что отпустить до 31 декабря: дела и обязательства, которые тянутся по инерции и больше не радуют. Почему: они забирают силы, которые пригодятся новому этапу.</p><h3>Близнецы. Поворот через людей и планы</h3><p>Где поворот: у Близнецов Овен отвечает за сферу друзей, единомышленников и планов на будущее. Поворот идёт через круг общения: приходят новые люди и сообщества, с кем-то из старых пути расходятся. Меняется и картина того, к чему вы идёте в ближайшие годы.</p><p>Ваши даты:</p><ul><li>6 и 9 декабря. Меркурий, ваша планета, переходит в сферу отношений и договоров, 9 декабря там же новолуние. Предложите сотрудничество человеку, с которым давно хотели работать вместе, или обсудите со второй половиной планы на 2027 год. Почему: новолуние открывает новый цикл именно в партнёрстве.</li><li>11 и 12 декабря. Сатурн и Нептун разворачиваются вперёд в вашей сфере друзей и планов. Напишите одному или двум людям из круга, где вам хочется быть: профессиональное сообщество, клуб, курс. Почему: с этих дней новые знакомства начинают работать на ваши планы.</li><li>24 декабря. Полнолуние в сфере ваших денег. Посчитайте, сколько заработали в 2026 году и сколько ушло на то, что вам по-настоящему ценно. Почему: полнолуние подсвечивает итог, и по цифрам видно, куда расти.</li></ul><p>Что сделать, чтобы не пропустить: до 7 января запишите, какой хотите видеть свою жизнь через три года, и рядом трёх людей, которые могут помочь на этом пути. Почему: у Близнецов поворот приходит через людей, и полезно заранее знать, к кому идти.</p><p>Что отпустить до 31 декабря: общение из чувства долга, после которого остаётся пустота. Почему: это время нужно для новых людей.</p><h3>Рак. Поворот в карьере</h3><p>Где поворот: у Раков Овен отвечает за сферу карьеры, должности и репутации. Поворот идёт через работу: новая роль, повышение, своё дело, уход с места, которое стало тесным. Возможно, решение уже зреет давно, и до Нового года оно выходит наружу.</p><p>Ваши даты:</p><ul><li>11 и 12 декабря. Сатурн и Нептун разворачиваются вперёд в вашей сфере карьеры. Запишите, какую роль в работе вы хотите к концу 2027 года, и обсудите с руководителем или заказчиком первый шаг к ней. Почему: рабочие вопросы, застрявшие с лета, в эти дни снова двигаются.</li><li>21 декабря. Солнце переходит в сферу отношений и партнёрства. Спросите близкого человека или партнёра по делу, как он видит ваш общий 2027 год. Почему: перемены в работе затронут и тех, кто рядом, и лучше договориться заранее.</li><li>24 декабря. Полнолуние в вашем знаке. Подведите итог года для себя: чем гордитесь, от чего устали, что хотите поменять. Почему: полнолуние в своём знаке бывает раз в год и ярко показывает, где вы сейчас.</li></ul><p>Что сделать, чтобы не пропустить: подготовьте две или три строки о своих результатах за год: что вы принесли компании или клиентам, где вы сильнее всего. Почему: поворот в карьере проходит легче, когда свою ценность вы объясняете результатами.</p><p>Что отпустить до 31 декабря: мысль, что на этой работе придётся остаться. Если оплата давно не устраивает, сравните условия хотя бы в двух вакансиях.</p><h3>Лев. Поворот через учёбу и новые горизонты</h3><p>Где поворот: у Львов Овен отвечает за сферу учёбы, дальних поездок, наставников и взглядов на жизнь. Поворот идёт через новое знание: курс, поездка или переезд, человек, который меняет ваш взгляд на привычные вещи.</p><p>Ваши даты:</p><ul><li>9 декабря. Новолуние в сфере любви, детей и творчества. Начните то, что приносит радость: хобби, свой творческий проект, время с детьми. Почему: новолуние даёт силы начать. Дела от души у Львов сейчас дают больше всего энергии.</li><li>11 и 12 декабря. Сатурн и Нептун разворачиваются вперёд в вашей сфере учёбы. Выберите обучение или поездку на 2027 год и узнайте условия: даты, цену, программу. Почему: с этих дней планы на учёбу и дорогу снова двигаются.</li><li>13 декабря. Юпитер, планета роста, в вашем знаке разворачивается, и с Земли кажется, что он идёт назад. Так будет до 13 апреля. Пересмотрите большие планы на год: что оставить, что убрать. Почему: эти месяцы хороши для доводки начатого. Новое большое удобнее запускать после 13 апреля.</li></ul><p>Что сделать, чтобы не пропустить: до 31 декабря найдите одного человека, у которого хотите учиться, и задайте ему свой главный вопрос. Почему: у Львов поворот приходит через учителя и новый взгляд.</p><p>Что отпустить до 31 декабря: уверенность, что в своём деле вы уже знаете всё. Почему: новые знания приходят к тем, кто оставил для них место.</p><h3>Дева. Поворот в общих деньгах</h3><p>Где поворот: у Дев Овен отвечает за сферу общих денег. Общие деньги это то, чем вы распоряжаетесь вместе с другими: например, семейный бюджет, общий кредит или доля в квартире. Поворот идёт через них: долги и кредиты, раздел или объединение имущества, деньги партнёра, новые вложения. Весь период Марс, планета действия, идёт по вашему знаку, и сил на перемены хватает.</p><p>Ваши даты:</p><ul><li>9 декабря. Новолуние в сфере дома и семьи. Обсудите с близкими, где хотите жить и какую крупную покупку делаете в 2027 году. Почему: новолуние начинает новый цикл, и планы о доме, принятые сейчас, легче довести до дела.</li><li>11 и 12 декабря. Сатурн и Нептун разворачиваются вперёд в вашей сфере общих денег. Закройте один долг, пересмотрите невыгодный договор или напомните про старую оплату. Почему: денежные вопросы, которые стояли с лета, в эти дни снова двигаются.</li><li>21 декабря. Солнце переходит в сферу любви, детей и радости. Устройте себе праздник без повода: свидание, вечер с детьми, любимое дело. Почему: после денежных дел нужен отдых, и он даёт силы на январь.</li></ul><p>Что сделать, чтобы не пропустить: составьте список всего общего: кредиты, общий бюджет, долевое имущество, деньги партнёров. Рядом напишите, кто за что отвечает. Почему: у Дев поворот идёт через общие деньги, и ясность в них даёт опору.</p><p>Что отпустить до 31 декабря: долги, о которых вы молчите, и договорённости, где вы платите больше своей доли. Почему: они тянут силы и деньги из нового года.</p><h3>Весы. Поворот в отношениях</h3><p>Где поворот: у Весов Овен отвечает за сферу партнёрства: брак, вторая половина, деловые партнёры, договоры. Дома может назреть разговор о том, как вы хотите жить дальше. На работе стоит уточнить, кто за что отвечает.</p><p>Ваши даты:</p><ul><li>4 декабря. Венера, ваша планета, переходит в сферу ваших денег и идёт там до 7 января. Подготовьте разговор о новой цене или прибавке и обоснуйте его результатами года: что вы принесли компании или клиентам. Почему: в эти недели о деньгах и своей ценности говорить легче.</li><li>11 и 12 декабря. Сатурн и Нептун разворачиваются вперёд в вашей сфере партнёрства. Проведите честный разговор со второй половиной или с деловым партнёром о том, как вы хотите жить и работать в 2027 году. Почему: сейчас можно вернуться к разговору, который вы отложили летом.</li><li>24 декабря. Полнолуние в сфере карьеры. Подведите итог года в работе: что получилось и чем гордитесь. Почему: полнолуние показывает итог, и с ним легче планировать январь.</li></ul><p>Что сделать, чтобы не пропустить: запишите, каким вы хотите видеть свой главный союз в 2027 году, и обсудите это вслух. Спросите, что из этого важно вам обоим.</p><p>Что отпустить до 31 декабря: привычку сглаживать углы, когда вам что-то не подходит. Почему: молчание копит обиду.</p><h3>Скорпион. Поворот в работе и самочувствии</h3><p>Где поворот: у Скорпионов Овен отвечает за сферу ежедневной работы, режима дня и здоровья. Поворот идёт через быт: как устроен ваш день, на что уходят силы, какую работу вы делаете каждый день. Тело первым подсказывает, что пора меняться.</p><p>Ваши даты:</p><ul><li>4 декабря. Венера, планета любви, красоты и денег, приходит в ваш знак и стоит там до 7 января. Обновите образ, займитесь собой, соглашайтесь на встречи. Почему: в эти недели люди тянутся к вам охотнее обычного.</li><li>9 декабря. Новолуние в сфере ваших денег. Поставьте одну цель по доходу на 2027 год цифрой и первый шаг к ней. Почему: новолуние начинает новый цикл, и цель, записанная сейчас, легче держится.</li><li>11 и 12 декабря. Сатурн и Нептун разворачиваются вперёд в вашей сфере работы и здоровья. Поменяйте одну привычку дня: сон, еду или движение. Запишитесь на осмотр, который откладывали. Почему: с этих дней новый режим приживается легче.</li></ul><p>Что сделать, чтобы не пропустить: выпишите всё, что делаете каждую неделю, и отметьте, что можно передать другим или убрать. Почему: у Скорпионов поворот начинается с порядка в днях.</p><p>Что отпустить до 31 декабря: работу на износ и привычку брать чужие задачи. Почему: силы, которые уходят в чужие дела, нужны вашему новому этапу.</p><h3>Стрелец. Поворот в любви и творчестве</h3><p>Где поворот: у Стрельцов Овен отвечает за сферу любви, детей, творчества и радости. Возможно новое знакомство. Если вы в отношениях, захочется больше времени вдвоём. У кого-то на первом месте окажутся дети или любимое творческое дело.</p><p>Ваши даты:</p><ul><li>9 декабря. Новолуние в вашем знаке, такое бывает раз в год. Запишите три цели на 2027 год лично для себя. Почему: новолуние в своём знаке открывает ваш личный новый год.</li><li>11 и 12 декабря. Сатурн и Нептун разворачиваются вперёд в вашей сфере любви и творчества. Сделайте один шаг: свидание, показ своей работы людям, разговор с ребёнком о его планах. Почему: то, что в сердечных делах стояло с лета, снова двигается.</li><li>13 декабря. Юпитер, ваша планета, разворачивается, и с Земли кажется, что он идёт назад. Так будет до 13 апреля. Проверьте планы на учёбу и дальние поездки: сроки, деньги, документы. Почему: эти месяцы хороши для подготовки. Большой старт удобнее после 13 апреля.</li></ul><p>Что сделать, чтобы не пропустить: в декабре выделите время на одно дело просто для радости, без пользы. Почему: у Стрельцов поворот приходит через радость, и без неё его не заметить.</p><p>Что отпустить до 31 декабря: мысль, что радость надо заслужить. Почему: в этой сфере сейчас ваша главная сила.</p><h3>Козерог. Поворот дома и в семье</h3><p>Где поворот: у Козерогов Овен отвечает за сферу дома, семьи, родителей и жилья. Поворот идёт через дом: переезд, ремонт, покупка или продажа жилья, перемены в отношениях с родителями. Сатурн ваша планета, и его разворот 11 декабря вы почувствуете сильнее других.</p><p>Ваши даты:</p><ul><li>11 и 12 декабря. Сатурн и Нептун разворачиваются вперёд в вашей сфере дома. Решите один давний вопрос о жилье или семье: документы, ремонт, разговор с родителями. Почему: домашние дела, которые стояли с лета, теперь двигаются.</li><li>21 декабря. Солнце приходит в ваш знак, начинается ваш личный год. Что вы хотите изменить к следующему дню рождения? Запишите одну вещь. Почему: начало своего солнечного месяца даёт силы на новые решения.</li><li>24 декабря. Полнолуние в сфере отношений. Скажите второй половине или близкому человеку, чего вам не хватает. Почему: полнолуние выводит наружу то, о чём молчали.</li><li>7 января. Новолуние в вашем знаке. Поставьте одну личную цель на 2027 год и первый шаг на январь. Почему: новолуние в своём знаке открывает новый цикл лично для вас.</li></ul><p>Что сделать, чтобы не пропустить: обсудите с семьёй, как вы хотите жить в 2027 году: где, с кем, что в доме меняете первым. Почему: у Козерогов поворот идёт через дом, и решать его лучше вместе.</p><p>Что отпустить до 31 декабря: чувство, что вы одни отвечаете за всех в семье. Почему: часть забот могут взять другие, и вам нужны силы на свой новый этап.</p><h3>Водолей. Поворот через слово и обучение</h3><p>Где поворот: у Водолеев Овен отвечает за сферу общения, переписки, коротких курсов, поездок рядом с домом, братьев и сестёр. Поворот идёт через слово: вы больше говорите, пишете, учитесь и учите. Новые знания и знакомства меняют направление.</p><p>Ваши даты:</p><ul><li>4 декабря. Венера переходит в сферу карьеры и репутации и идёт там до 7 января. Покажите свою работу руководителю, обновите резюме или страницу о себе. Почему: в эти недели вас охотнее замечают.</li><li>11 и 12 декабря. Сатурн и Нептун разворачиваются вперёд в вашей сфере общения. Начните короткий курс или запустите то, о чём давно хотели рассказать: блог, выступление, рассылку. Начните с темы, которую с вами часто обсуждают: она подойдёт и для поста, и для первого выступления.</li><li>13 декабря. Юпитер, планета роста, разворачивается в сфере партнёрства, и с Земли кажется, что он идёт назад. Так будет до 13 апреля. Перечитайте договоры. С близким человеком обсудите, устраивают ли вас прежние договорённости. Почему: эти месяцы хороши для проверки союзов. Новые крупные договоры удобнее заключать после 13 апреля.</li></ul><p>Что сделать, чтобы не пропустить: до 31 декабря напишите один пост или сообщение о том, что вы умеете, и отправьте его людям. Почему: у Водолеев поворот приходит через сказанное вслух.</p><p>Что отпустить до 31 декабря: привычку оправдываться в разговорах. Почему: в новом этапе ваше слово весит больше, и говорить можно прямо.</p><h3>Рыбы. Поворот в деньгах</h3><p>Где поворот: у Рыб Овен отвечает за сферу ваших собственных денег: доход, траты, то, на чём вы зарабатываете, и ощущение своей ценности. Поворот идёт через деньги: новый источник дохода, новая цена, другие траты. Нептун ваша планета, и его разворот 12 декабря вы почувствуете сильнее других.</p><p>Ваши даты:</p><ul><li>9 декабря. Новолуние в сфере карьеры. Поставьте одну рабочую цель на 2027 год и первый шаг к ней на декабрь. Почему: новолуние начинает новый цикл, и карьерная цель, записанная сейчас, легче держится.</li><li>11 и 12 декабря. Сатурн и Нептун разворачиваются вперёд в вашей сфере денег. Пересчитайте свои цены или доход и решите, что меняете с января. Почему: денежные вопросы, застрявшие с лета, в эти дни снова двигаются.</li><li>24 декабря. Полнолуние в сфере любви, детей и радости. Проведите вечер с теми, кого любите, и спросите их, что им хочется повторить в новом году. Почему: полнолуние показывает, что по-настоящему радует, и на это не жалко денег.</li></ul><p>Что сделать, чтобы не пропустить: до 31 декабря откройте отдельный счёт под подушку безопасности и переведите туда первую сумму, даже небольшую. Почему: у Рыб поворот идёт через деньги, и подушка даёт спокойствие для новых решений.</p><p>Что отпустить до 31 декабря: работу и траты, где вы отдаёте больше, чем получаете. Почему: новый этап начинается с честной цены вашего труда.</p></div>
+<div class="sec"><h2 id="sec-2">Календарь для всех знаков</h2><ul><li>4 декабря в 11:08 Венера переходит в Скорпион и идёт там до 7 января.</li><li>6 декабря в 11:30 Меркурий переходит в Стрелец.</li><li>9 декабря в 03:51 новолуние в Стрельце, начало нового лунного цикла.</li><li>11 декабря в 01:44 Сатурн разворачивается вперёд. Главная дата поворота.</li><li>12 декабря в 22:04 Нептун разворачивается вперёд.</li><li>13 декабря в 03:07 Юпитер во Льве разворачивается назад до 13 апреля 2027 года.</li><li>21 декабря в 23:45 Солнце входит в Козерог, зимнее солнцестояние.</li><li>24 декабря в 04:28 полнолуние в Раке.</li><li>25 декабря в 21:19 Меркурий переходит в Козерог.</li><li>7 января в 11:52 Венера переходит в Стрелец, в 23:24 новолуние в Козероге.</li><li>Весь период Марс идёт по Деве.</li></ul></div>
+<div class="mid"><a href="https://payform.ru/ldcQpUK/">Разбор «Успешный 2027»: 990 ₽</a></div>
+<div class="sec"><h2 id="sec-3">А как у вас?</h2><p>Здесь общий поворот для всех людей вашего знака. У двух людей одного знака он проходит по-разному: у одного главным станет работа, у другого дом или любовь. Если хотите увидеть, как этот период сложится лично у вас, закажите разбор «Успешный 2027». В нём я смотрю вашу карту рождения: какие темы будут главными для вас в 2027 году, в какие месяцы действовать смело и когда беречь силы. Стоимость 990 ₽, оплата по ссылке: https://payform.ru/ldcQpUK/ После оплаты я попрошу дату, время и город рождения и пришлю разбор в PDF в течение суток. Звёзды не сделают работу за вас. Решения принимаете вы.</p></div>
+<div class="cta"><span class="eyebrow"><i class="dot"></i>Следующий шаг</span><div class="ttl">Ваш личный разбор «Успешный 2027»</div><p class="sub">Памятка общая, по знаку. У двух людей одного знака поворот проходит по-разному. Это видно по полной карте рождения: по дате, точному времени и городу рождения. В разборе «Успешный 2027» я смотрю вашу карту рождения и показываю, на что опереться в 2027 году: деньги, работа, отношения, в какие месяцы действовать смело и когда беречь силы. Разбор в PDF стоит 990 ₽, пришлю в течение суток. После оплаты пришлите дату, точное время и город рождения.</p><a class="cta-btn" href="https://payform.ru/ldcQpUK/">Хочу разбор «Успешный 2027»<span class="ar">&#8594;</span></a><p class="cta-note">(Если страница не загружается, попробуйте выключить VPN)</p></div>
+</article>
+<aside class="toc"><div class="h">На странице</div><a href="#sec-0">Почему поворот именно сейчас</a><a href="#sec-1">Ваш знак</a><a href="#sec-2">Календарь для всех знаков</a><a href="#sec-3">А как у вас?</a></aside>
+</main>
+<footer class="ft"><div class="ft-in"><a class="logo" href="/">Ирина<i class="sq"></i>Терещенко</a><span class="sp"></span><nav class="ft-links"><a href="/">Все материалы</a><a href="/about/">Обо мне</a><a href="https://t.me/tereshchenkoirina">Личная консультация</a></nav></div><div class="ft-bot">Ирина Терещенко · @irinatereshchenko_metaastrolog · @tereshchenkoirina</div><div class="ft-legal">ИП Воронин Евгений Викторович · ИНН 542405485902 · <a href="/price/">Стоимость</a> · <a href="/oferta/">Публичная оферта</a> · <a href="/privacy/">Политика обработки персональных данных</a></div></footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(b.getAttribute('data-text')).then(function(){
+      var o=b.textContent;b.textContent='Скопировано';b.classList.add('done');
+      setTimeout(function(){b.textContent=o;b.classList.remove('done');},1600);
+    });
+  });
+});
+</script>
+
+<script>
+(function(){
+  var links=document.querySelectorAll('.toc a');
+  var heads=Array.prototype.slice.call(document.querySelectorAll('.sec h2[id]'));
+  if(!links.length||!heads.length)return;
+  function mark(){
+    var cur=0;
+    for(var i=0;i<heads.length;i++){
+      if(heads[i].getBoundingClientRect().top<=90)cur=i;else break;
+    }
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+  }
+  // The observer fires exactly when a heading crosses the band under the header, which
+  // is exactly when the active section can change. The class is then set from geometry
+  // so a section taller than the band (most of them) never leaves the menu blank.
+  if(window.IntersectionObserver){
+    var io=new IntersectionObserver(mark,{rootMargin:'-86px 0px -70% 0px',threshold:0});
+    heads.forEach(function(h){io.observe(h);});
+  }else{
+    window.addEventListener('scroll',mark,{passive:true});
+  }
+  mark();
+  links.forEach(function(a){a.addEventListener('click',function(e){
+    var h=a.getAttribute('href'),el=document.getElementById(h.slice(1));
+    if(!el)return;
+    e.preventDefault();
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+    history.replaceState(null,'',h);
+  });});
+})();
+</script>
+</body></html>
